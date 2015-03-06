@@ -50,8 +50,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
     };
 
     // Andalay.Collection
-    // --------------
-    //
+    // ------------------
     // Represents a collection of Andalay.Model objects
     
     // Define the Collection's inheritable methods.
@@ -84,6 +83,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         addOne: function(obj, options) {
             options || (options = {});
             var id, existing, index;
+            if (_.isArray(obj))
+                throw new Error('The object to add must be an object. Array given');
+            if (!_.isObject(obj)){
+                throw new Error('Cannot add "' + obj + '" to the collection. You must specify an object to add')
+            }
             index = (options.at !== void 0) ? options.at : this.models.length;
             var model;
             if (existing = this.get(obj)) {
@@ -96,22 +100,20 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
                 // add the model to the models array
                 this.models.splice(index, 0, model);
                 this.length += 1;
-                return model;
             }
             return model;
         },
         
         /**
-         * @param mixed object | array of objects
+         * @param models array of objects
+         * @throw error if models param is not an array
          * @returns array of added or prexisting models
          */
-        add: function(models, options) {
+        addMany: function(models, options) {
             options || (options = {});
-            if (!models) {
-                throw new Error('Cannot add ' + models + ', must be an object or an array of objects');
+            if (!_.isArray(models)) {
+                throw new Error('Cannot add ' + models + ', models must be an array of objects');
             }
-            var singular = !angular.isArray(models);
-            var models = singular ? [models] : models;
             var added = [];
             for (var i = 0; i < models.length; i++) {
                 var obj = models[i];
@@ -125,7 +127,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         reset: function (models) {
             this._reset();
             if (models)
-                this.add(models);
+                this.addMany(models);
         },
         
         // Get a model from the set by id.
@@ -142,8 +144,8 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          * @param mixed object | array
          * @returns array
          */
-        updateAll: function(models) {
-            return this.add(models);
+        updateMany: function(models) {
+            return this.addMany(models);
         },
 
         /**
@@ -231,10 +233,8 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         // models' attributes.
         toJSON: function(options) {
             var ret = [];
-            console.log(this.models, 'this.models');
             for (var i = this.models.length - 1; i >= 0; i--) {
                 var model = this.at(i);
-                console.log(model, 'model');
                 if (model) {
                     ret[i] = model.toJSON();
                 }

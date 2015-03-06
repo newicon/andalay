@@ -1,6 +1,6 @@
 {
   "author": "Newicon - Steve O'Brien",
-  "name": "angular-andalay",
+  "name": "andalay",
   "description": "Angular Data Layer",
   "version": "0.0.1",
   "main": "./src/andalay.js",
@@ -17,6 +17,6 @@
     "angular-underscore-module": "~1.0.1"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.13"
+    "angular-mocks": "~1.2.13"  
   }
 }
