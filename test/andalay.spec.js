@@ -197,11 +197,36 @@ describe('Andalay:', function(){
         	outcome.removeAll();
         	expect(outcome.models).toBeEmptyArray();
         })
-		
-	});
-	
-	
 
+        // idAttribute
+        it('should work with a custom id attribute of _id', function(){
+        	var ContactModel = Andalay.Model.extend({
+        		idAttribute:'_id'
+        	});
+        	var ContactCollection = Andalay.Collection.extend({
+        		model:ContactModel
+        	});
+        	var Contacts = new ContactCollection();
+        	Contacts.reset([
+        		{
+        			_id:100,
+        			name:'Andrew'
+        		},
+        		{
+        			_id:123,
+        			name:'Bob'
+        		},
+        		{
+        			_id:102,
+        			name:'Chris'
+        		}
+        	]);
+        	var bob = Contacts.get(123);
+        	var andrew = Contacts.get({_id:100});
+        	expect(bob.name).toEqual('Bob');
+        	expect(andrew.name).toEqual('Andrew');
+        })
+	});
 });
 
 function resetData(){

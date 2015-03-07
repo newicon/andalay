@@ -36,6 +36,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         
         idAttribute: 'id',
         
+        // define default attributes to set on this model
         defaults: {},
 
         // Initialize is an empty function by default. Override it with your own
