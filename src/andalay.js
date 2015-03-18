@@ -92,6 +92,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             index = (options.at !== void 0) ? options.at : this.models.length;
             var model;
             if (existing = this.get(obj)) {
+                // already exists in the collection so extend it.
                 angular.extend(existing, obj);
                 model = existing;
             } else {
@@ -177,8 +178,12 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return this;
         },
 
-        modelId: function (attrs) {
-            return attrs[this.model.prototype.idAttribute || 'id'];
+        /**
+         * Returns the id value of the passed in object.
+         * @return mixed string | interger
+         */
+        modelId: function (object) {
+            return object[this.model.prototype.idAttribute || 'id'];
         },
 
         last: function() {
@@ -208,9 +213,13 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         // Prepare a hash of attributes (or other model) to be added to this
         // collection.
         _prepareModel: function(object) {
-            if (object instanceof Andalay.Model) return object;
-            var model = new this.model(object);
-            object.collection = this;
+            var model = object;
+            if (object instanceof Andalay.Model) {
+                model = object;
+            } else {
+                model = new this.model(object);
+            }
+            model.collection = this;
             return model;
         },
 
@@ -243,6 +252,24 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return ret;
         }
     };
+
+    var methods = ['forEach', 'find'];
+
+    // 'each', 'map', 'collect', 'reduce', 'foldl',
+    // 'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select',
+    // 'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke',
+    // 'max', 'min', 'toArray', 'size', 'first', 'head', 'take', 'initial', 'rest',
+    // 'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle',
+    // 'lastIndexOf', 'isEmpty', 'chain', 'sample', 'partition'
+
+    _.each(methods, function(method) {
+        if (!_[method]) return;
+        Andalay.Collection.prototype[method] = function() {
+            var args = [].slice.call(arguments);
+            args.unshift(this.models);
+            return _[method].apply(_, args);
+        };
+    });
 
     /**
      * Create a subclass.
