@@ -30,6 +30,12 @@
 					<li><a href="#model-extend">extend</a></li>
 					<li><a href="#model-constructor">constructor / initialize</a></li>
 				</ul>
+				<a href="#model" class="toc-title">Collection</a>
+				<ul class="toc-section">
+					<li><a href="#model-extend">extend</a></li>
+					<li><a href="#model-constructor">constructor / initialize</a></li>
+				</ul>
+				<a href="#model" class="toc-title">Angular Integration</a>
 			</div>
 
 			<div class="inner">
@@ -42,9 +48,11 @@
 				</header>
 
 				<section id="downloads" class="clearfix">
-					<a href="https://github.com/newicon/andalay/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-					<a href="https://github.com/newicon/andalay/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-					<a href="https://github.com/newicon/andalay" id="view-on-github" class="button"><span>View on GitHub</span></a>
+					<div style="float:left">
+						<a href="/src/andalay.js" id="download-zip" class="button"><span>Development (1.0.1)</span></a>
+						<a href="/dist/andalay.min.js" id="download-tar-gz" class="button"><span>Production (1.0.1)</span></a>
+						<a href="https://github.com/newicon/andalay" id="view-on-github" class="button"><span>View on GitHub</span></a>
+					</div>
 				</section>
 
 				<hr>
@@ -57,15 +65,16 @@
 					<p>A data layer modelled on Backbone collection and models. For use with Angular JS.</p>
 
 					<h2><a id="introduction-goals" class="anchor" href="#introduction-goals" aria-hidden="true"></a>Goals</h2>
-
-					<ul>
-						<li>Form a data layer that syncs with a backend (restfull or otherwise, the way browsers are going it wouldnt be surprising to have a local database type object in the future that does this for us, in which case Andalay might form a default standard interface perhaps)</li>
-						<li>Creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection and if not found would then ask the server.</li>
+					<p>
+					The main goal of Andalay is to form a consistent data layer that client javscript applications can use to manage and manipulate data that syncs with a backend (restfull, localstorage, etc). 
+					This naturally creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection for a model with id 123 and if not found would then ask the server.
+					Therefore this should: 
+					</p>
+					<ul>		
 						<li>Makes working with collections of models easier</li>
-						<li>Enables active record style objects. Each item in the collection is in fact a model that can have convenience functions</li>
+						<li>Enable active record style objects. Each item in the collection is in fact a model that can have convenience functions</li>
 						<li>Make it easy to locally search through collections and models</li>
 					</ul>
-
 					<h2>
 						<a id="to-develop" class="anchor" href="#to-develop" aria-hidden="true"><span class="octicon octicon-link"></span></a>To Develop</h2>
 

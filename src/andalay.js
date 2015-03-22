@@ -82,22 +82,21 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          * @return the added object as an instance of the Model
          */
         addOne: function(obj, options) {
-            options || (options = {});
+            options = options || {};
             var id, existing, index;
             if (_.isArray(obj))
                 throw new Error('The object to add must be an object. Array given');
             if (!_.isObject(obj)){
-                throw new Error('Cannot add "' + obj + '" to the collection. You must specify an object to add')
+                throw new Error('Cannot add "' + obj + '" to the collection. You must specify an object to add');
             }
             index = (options.at !== void 0) ? options.at : this.models.length;
-            var model;
-            if (existing = this.get(obj)) {
+            var model = this.get(obj);
+            if (this.exists(obj)) {
                 // already exists in the collection so extend it.
-                angular.extend(existing, obj);
-                model = existing;
+                angular.extend(model, obj);
             } else {
                 // add a new one
-                var model = this._prepareModel(obj);
+                model = this._prepareModel(obj);
                 this._addReference(model);
                 // add the model to the models array
                 this.models.splice(index, 0, model);
@@ -112,7 +111,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          * @returns array of added or prexisting models
          */
         addMany: function(models, options) {
-            options || (options = {});
+            options = options || {};
             if (!_.isArray(models)) {
                 throw new Error('Cannot add ' + models + ', models must be an array of objects');
             }
@@ -132,12 +131,26 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
                 this.addMany(models);
         },
         
-        // Get a model from the set by id.
-        // id: mixed an object with the id attribute set or the id
+        /**
+         * Get a model from the set by id.
+         * @param mixed obj. You can specify either the id, the cid or an object
+         * If passed an object it will attempt to get the id from the objects property specified by the model.idAttribute
+         * @return Andalay.Model
+         */
         get: function(obj) {
             // must specify a valid object or id
             if (obj == null) return void 0;
             return this._index[obj] || this._index[this.modelId(obj)] || this._index[obj.cid];
+        },
+
+        /**
+         * Returns whether a model exists in the collection with the id.
+         * @param mixed id, can be an id, cid or object
+         * @see this.get()
+         * @return boolean true if a model exists with the id
+         */
+        exists: function(id) {
+            return !_.isUndefined(this.get(id));
         },
         
         /**
