@@ -2,5 +2,6 @@
 node_modules
 bower_components
 coverage
-/nbproject/private/
 /nbproject
+/nbproject/private/
+>>>>>>> 8f9318c2aa7c7c92fc0f5d548ad6f0f7a4f712d1

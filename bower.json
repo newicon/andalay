@@ -2,7 +2,7 @@
   "author": "Newicon - Steve O'Brien",
   "name": "andalay",
   "description": "Angular Data Layer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./src/andalay.js",
   "ignore": [
     "test",

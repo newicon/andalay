@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="docs/stylesheets/stylesheet.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="docs/stylesheets/pygment_trac.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="docs/stylesheets/print.css" media="print">
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>Andalay.js</title>
+	</head>
+
+	<body>
+		<div id="container">
+
+			<div class="sidebar">
+				<a href="#" class="toc-title">Andalay.js <small class="version">(0.1.0)</small></a>
+				<ul class="toc-section">
+					<li><a href="https://github.com/newicon/andalay">GitHub Repository</a></li>
+				</ul>
+				<a href="#introduction" class="toc-title">Introduction</a>
+				<ul class="toc-section">
+					<li><a href="#introduction-goals">Goals</a></li>
+				</ul>
+				<a href="#model" class="toc-title">Model</a>
+				<ul class="toc-section">
+					<li><a href="#model-extend">extend</a></li>
+					<li><a href="#model-constructor">constructor / initialize</a></li>
+				</ul>
+				<a href="#model" class="toc-title">Collection</a>
+				<ul class="toc-section">
+					<li><a href="#model-extend">extend</a></li>
+					<li><a href="#model-constructor">constructor / initialize</a></li>
+				</ul>
+				<a href="#model" class="toc-title">Angular Integration</a>
+			</div>
+
+			<div class="inner">
+				
+				
+				<header class="clearfix">
+					<img style="height:95px;float:right;margin-right:150px;" src="docs/images/andalayjs-speedy.png" />
+					<h1>Andalay.js</h1>
+					<h2>Data layer for angular projects</h2>
+				</header>
+
+				<section id="downloads" class="clearfix">
+					<div style="float:left">
+						<a href="/src/andalay.js" id="download-zip" class="button"><span>Development (1.0.1)</span></a>
+						<a href="/dist/andalay.min.js" id="download-tar-gz" class="button"><span>Production (1.0.1)</span></a>
+						<a href="https://github.com/newicon/andalay" id="view-on-github" class="button"><span>View on GitHub</span></a>
+					</div>
+				</section>
+
+				<hr>
+
+				<section id="main_content">
+					<!-- <h1><a id="andalay" class="anchor" href="#andalay" aria-hidden="true"><span class="octicon octicon-link"></span></a>Andalay</h1> -->
+
+					<h2><a id="introduction" class="anchor"></a>Introduction</h2>
+
+					<p>A data layer modelled on Backbone collection and models. For use with Angular JS.</p>
+
+					<h2><a id="introduction-goals" class="anchor" href="#introduction-goals" aria-hidden="true"></a>Goals</h2>
+					<p>
+					The main goal of Andalay is to form a consistent data layer that client javscript applications can use to manage and manipulate data that syncs with a backend (restfull, localstorage, etc). 
+					This naturally creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection for a model with id 123 and if not found would then ask the server.
+					Therefore this should: 
+					</p>
+					<ul>		
+						<li>Makes working with collections of models easier</li>
+						<li>Enable active record style objects. Each item in the collection is in fact a model that can have convenience functions</li>
+						<li>Make it easy to locally search through collections and models</li>
+					</ul>
+					<h2>
+						<a id="to-develop" class="anchor" href="#to-develop" aria-hidden="true"><span class="octicon octicon-link"></span></a>To Develop</h2>
+
+					<ol>
+						<li><code>git clone git@bitbucket.org:newicon/angular-andalay.git</code></li>
+						<li><code>cd angular-andalay</code></li>
+						<li><code>npm install</code></li>
+					</ol>
+
+					<p>To run the tests:</p>
+
+					<ul>
+						<li>
+							<code>npm test</code> - run through the tests once and exit.</li>
+						<li>
+							<code>karma start</code> - runs the tests and reruns them when any development file is changed note you will need to install karma <code>npm install karma -g</code>
+						</li>
+					</ul>
+
+					<h2>Andalay.Model</h2>
+					<p>Andalay.Model</p>
+					
+					<h2><a id="model-extend" href="#model-extend"></a>Extend</h2>
+					<code>Andalay.Model.extend(properties, [classProperties])</code>
+					
+					<h2><a id="model-constructor" href="#model-extend"></a>Constructor / Initialize</h2>
+					<p>Constructor / Initialize enables</p>
+<pre>
+new Book({
+  title: "One Thousand and One Nights",
+  author: "Scheherazade"
+});
+</pre>
+
+				</section>
+
+				<footer>
+					Andalay is maintained by: | github:<a href="https://github.com/newicon"> newicon</a> | web: <a title="Newicon web development" href="http://newicon.net">newicon.net</a><br>
+					This page uses elements of the Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+				</footer>
+
+				<script type="text/javascript">
+					var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+					document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+				</script>
+				<script type="text/javascript">
+					try {var pageTracker = _gat._getTracker("UA-33348035-2");pageTracker._trackPageview();} catch (err) {}
+				</script>
+			</div>
+		</div>
+	</body>
+</html>
