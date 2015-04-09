@@ -1,9 +1,8 @@
 describe('Andalay:', function(){
-	var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
-
+	//var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
 	beforeEach(angular.mock.module('Andalay'));
 
-	beforeEach(inject(function(_$httpBackend_,_$q_,_Andalay_){
+	beforeEach(inject(function(_$httpBackend_, _$q_, _Andalay_){
 
 		$httpBackend = _$httpBackend_;
 		$q = _$q_;
@@ -37,19 +36,19 @@ describe('Andalay:', function(){
 	* CONFIGURATION
 	*****************************************************************************/
 
-	describe('Creating Andalay',function(){
-		it('should be injectable',inject(function(Andalay){
-			expect(Andalay).toBeDefined();
-		}));
-		it('should have a valid Andalay.Collection object',inject(function(Andalay){
-			expect(Andalay.Collection).toBeDefined();
-			expect(angular.isFunction(Andalay.Collection.extend)).toBeTruthy();
-		}));
-		it('should have a valid Andalay.Model model object',inject(function(Andalay){
-			expect(Andalay.Model).toBeDefined();
-			expect(angular.isFunction(Andalay.Model.extend)).toBeTruthy();
-		}));
-	});
+	// describe('Creating Andalay',function(){
+	// 	it('should be injectable',inject(function(Andalay){
+	// 		expect(Andalay).toBeDefined();
+	// 	}));
+	// 	it('should have a valid Andalay.Collection object',inject(function(Andalay){
+	// 		expect(Andalay.Collection).toBeDefined();
+	// 		expect(angular.isFunction(Andalay.Collection.extend)).toBeTruthy();
+	// 	}));
+	// 	it('should have a valid Andalay.Model model object',inject(function(Andalay){
+	// 		expect(Andalay.Model).toBeDefined();
+	// 		expect(angular.isFunction(Andalay.Model.extend)).toBeTruthy();
+	// 	}));
+	// });
 
 	// test that we can reset a collection
 	describe('Test Andalay collection',function(){
@@ -199,7 +198,7 @@ describe('Andalay:', function(){
         })
 
         // idAttribute
-        it('should work with a custom id attribute of _id', function(){
+        it('should work with a custom id attribute of _id', function() {
         	var ContactModel = Andalay.Model.extend({
         		idAttribute:'_id'
         	});
@@ -226,6 +225,48 @@ describe('Andalay:', function(){
         	expect(bob.name).toEqual('Bob');
         	expect(andrew.name).toEqual('Andrew');
         })
+
+	});
+
+	describe('Replicate addOne bug', function() {
+		it('should set up new models', function(){
+			var DonationModel = Andalay.Model.extend({
+				defaults:{type:'unknown'}
+			});
+			var DonationCollection = Andalay.Collection.extend({
+	    		model:DonationModel
+			});
+			var donations = new DonationCollection();
+			var donation = {type:'my new type'};
+			donations.addOne(donation);
+		});
+	});
+
+	// Replicate a bug where the default properties get shared between models
+	describe('Defaults should not be shared', function() {
+		// Defaults should be different!
+		// TODO: write a test to make sure default properties are not getting global 
+		// references and are updated uniquely per model
+		it('setting a property that has already been defined as default, should not result in shared value', function() {
+			//throw new Error('implement me');
+			var TaskModel = Andalay.Model.extend({
+				defaults:{
+					name:'no name defined',
+					type:'task'
+				}
+			});
+			var TaskCollection = Andalay.Collection.extend({
+	    		model:TaskModel
+			});
+			var tasks = new TaskCollection();
+			var task = new TaskModel({id: 1, name: 'A new task'});
+			var job = new TaskModel({id: 2, name: 'A new Job', type: 'job'});
+			tasks.addMany([task, job]);
+			expect(tasks.get(1).type).toEqual('task');
+			expect(tasks.get(2).type).toEqual('job');
+			//TODO: integrate with angular scope, as it is when angular updates its scope
+			// that the refernce to defaults property can break.
+		});
 	});
 });
 
