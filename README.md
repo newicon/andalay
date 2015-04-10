@@ -4,7 +4,7 @@ A data layer modelled on Backbone collection and models. For use with Angular JS
 
 ## Website
 
-[http://andalayjs.com](http://andalay.js)
+[http://andalayjs.com](http://andalayjs.com)
 
 ## Goals
 
