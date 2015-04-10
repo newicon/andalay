@@ -2,6 +2,10 @@
 
 A data layer modelled on Backbone collection and models. For use with Angular JS.
 
+## Website
+
+[http://andalayjs.com](http://andalay.js)
+
 ## Goals
 
 - Form a data layer that syncs with a backend (restfull or otherwise, the way browsers are going it wouldnt be surprising to have a local database type object in the future that does this for us, in which case Andalay might form a default standard interface perhaps)
