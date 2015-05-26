@@ -1,5 +1,8 @@
 /**
  * Angular Andalay.
+ * Andalay is essentially a fork of backbone, with a few key differences.
+ * 1: no attributes array.  The attributes are the models properties.
+ * 2: No events raised.
  * Backbone-esc Models for Angular
  * @author Steve O'Brien, Newicon Ltd
  */
@@ -45,6 +48,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          */
         idAttribute: 'id',
 
+		/**
+		 * A boolean whther the model is currently saving
+		 */
+		saving: false,
+
         /**
          * define default attributes to set on this model
          */
@@ -86,20 +94,74 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 			return response;
 		},
 		
-		getBackend: function(){
-			// looks up the current backend set.
-			// should lookup on specific model, if not defined
-			// lookup on static Andalay global setting
-			// if not defined, use default http backend.
-			return Andalay.Backend.http;
+		isNew: function() {
+			return !this.has(this.idAttribute);
+		},
+		
+		isValid: function() {
+			return this.validate();
+		},
+		
+		url: function() {
+			var base =
+			  _.result(this, 'urlRoot') ||
+			  _.result(this.collection, 'url') ||
+			  urlError();
+			if (this.isNew()) return base;
+			var id = this.id || this[this.idAttribute];
+			return base.replace(/([^\/])$/, '$1/') + encodeURIComponent(id);
+		},
+		
+		validate: function() {
+			return true;
+		},
+		
+		sync: function() {
+			return Andalay.sync.apply(this, arguments);
 		},
 		
 		/**
 		 * Saves the current model to the backend
-		 * TODO
+		 * options {
+		 *   validate:false (prevents validation and forces save) defaults to true
+		 * }
 		 * @returns promise
 		 */
-		save: function(){}
+		save: function(options){
+			var method = this.isNew() ? 'create' : 'update';
+			options = _.defaults((options || {}), {validate:true});
+			this.setSaving(true);
+			var deferred = $q.defer();
+			if (options.validate && !this.validate()) {
+				deferred.reject('Validation failed');
+			}
+			var model = this;
+			return this.sync(method, this, options).then(function(response) {
+				// success
+				model.setSaving(false);
+				angular.extend(model, model.parse(response.data));
+				deferred.resolve(response);
+			}, function(response){
+				// error, assumes if request fails the returned data is an array of errors.
+				// In the format [{attribute:['error message']}]
+				model._errors = response.data;
+				deferred.reject(response);
+			});
+		},
+		
+		// store errors
+		_errors:{},
+		
+		/**
+		 * Sets the saving address
+		 * @param {type} boolean
+		 * @returns {undefined}
+		 */
+		setSaving: function(boolean){
+			this.saving = boolean;
+			if (this.collection)
+				this.collection.saving = boolean;
+		}
     };
 	
 	var modelMethods = ['keys', 'values', 'pairs', 'invert', 'pick', 'omit', 'chain', 'isEmpty'];
@@ -111,7 +173,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return _[method].apply(_, args);
         };
     });
-
+	
     /**
      * Andalay.Collection
      * ------------------
@@ -142,6 +204,16 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          * This should be overridden in most cases.
          */
         model: Andalay.Model,
+		
+		/**
+		 * boolean whther the collection is currently loading
+		 */
+		loading:false,
+		
+		/**
+		 * A boolean whether a model within the collection is currently saving
+		 */
+		saving: false,
         
         /**
          * stores the list of models
@@ -194,11 +266,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         },
 		
 		/** 
-		 * parse converts a response into the hash of attributes to be set on the model. 
-		 * The default implementation is just to pass the response along.
+		 * Parse converts a response into a list of models to be added to the collection. 
+		 * The default implementation is just to pass it through.
 		 * @param {type} response
 		 * @param object options
-		 * @returns Object
+		 * @returns Array
 		 */
 		parse: function(response, options) {
 			return response;
@@ -341,6 +413,53 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return this.models;
         },
 
+		/**
+		 * Return models with matching attributes. Useful for simple cases of filter.
+		 * @param {type} attrs
+		 * @param {type} first
+		 * @returns {unresolved}
+		 */
+		where: function (attrs, first) {
+			var matches = _.matches(attrs);
+			return this[first ? 'find' : 'filter'](function (model) {
+				return matches(model);
+			});
+		},
+		
+		/**
+		 * Return the first model with matching attributes. Useful for simple cases of find.
+		 * @param {type} attrs
+		 * @returns {unresolved}
+		 */
+		findWhere: function (attrs) {
+			return this.where(attrs, true);
+		},
+		
+		sync: function() {
+			return Andalay.sync.apply(this, arguments);
+		},
+		
+		/**
+		 * Fetch the default set of models for this collection, 
+		 * resetting the collection when they arrive. 
+		 * If reset: true is passed, the response data will be passed through the reset method instead of set.
+		 * @param {type} options
+		 * @returns {andalay_L10.Andalay.Collection.prototype@call;sync}
+		 */
+		fetch: function (options) {
+			options = options ? _.clone(options) : {};
+			if (options.parse === void 0)
+				options.parse = true;
+			var collection = this;
+			collection.loading = true;
+			return this.sync('read', this, options).then(function(response){
+				collection.loading = false;
+				collection.addMany(collection.parse(response.data));
+			}, function(){
+				// error
+			});
+		},
+
         /**
          * Private method to reset all internal state. Called when the collection
          * is first initialized or reset.
@@ -387,26 +506,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             delete this._index[model.cid];
             var id = this.modelId(model);
             if (id != null) delete this._index[id];
-        },
-        
-        /**
-         * The JSON representation of a Collection is an array of the
-         * models' attributes.
-         * @return object that can be json-ified
-         */
-        toJSON: function(options) {
-            var ret = [];
-            for (var i = this.models.length - 1; i >= 0; i--) {
-                var model = this.at(i);
-                if (model) {
-                    ret[i] = model.toJSON();
-                }
-            }
-            return ret;
         }
+        
     };
 
-    var methods = ['forEach', 'find'];
+    var methods = ['forEach', 'each', 'find', 'filter'];
 
     // 'each', 'map', 'collect', 'reduce', 'foldl',
     // 'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select',
@@ -423,7 +527,38 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return _[method].apply(_, args);
         };
     });
-
+	
+	var BackendHttp = {
+		create: function(){
+			//model.url
+		},
+		update: function(){
+			
+		}
+	};
+	
+	Andalay.sync = function(method, model, options) {
+		var methodMap = {
+			'create': 'POST',
+			'update': 'PUT',
+			'patch': 'PATCH',
+			'delete': 'DELETE',
+			'read': 'GET'
+		};
+		options = options || {};
+		var params = {method: methodMap[method]};
+		// Ensure that we have a URL.
+		if (angular.isUndefined(options.url)) {
+			params.url = _.result(model, 'url') || urlError();
+		}
+		if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
+			params.data = model.toJSON();
+		}
+		var httpOptions = angular.extend(params, options);
+		model.saving = true;
+		return $http(httpOptions);
+	};
+	
     /**
      * Shamelessly pinched from backbone
      * Create a subclass.
@@ -453,22 +588,14 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         return child;
     };
 	
-	Andalay.Backend = function(){};
-	Andalay.Backend.prototype = {
-		// TODO
+	var urlError = function() {
+		throw new Error('A "url" property or function must be specified');
 	};
 	
     /**
      * Add extend function to Objects
      */
-    Andalay.Model.extend = Andalay.Collection.extend = Andalay.Backend.extend = extend;
-
-	Andalay.Backend.http = {
-		saveModel: function(model) {
-			var data = {model:_.clone(model.toJSON())};
-			return $http.post(Global.url.save_donation, data, Global.httpPostAsFormEncoded);
-		}
-	};
+    Andalay.Model.extend = Andalay.Collection.extend = extend;
 
     return Andalay;
 }]);
