@@ -245,7 +245,6 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             this.forEach(function(model, index) {
                 json.push(model.toJSON());
             });
-            console.log(JSON.stringify(json));
             return json;
         },
 
