@@ -71,6 +71,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         toJSON: function() {
             var json = angular.copy(this);
             delete json['collection'];
+            delete json['cid'];
             return json;
         },
 		
@@ -235,6 +236,19 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          */
         initialize: function(properties, options) {},
         
+        /**
+         * returns an object that can be json-ified
+         * @returns object
+         */
+        toJSON: function() {
+            var json = [];
+            this.forEach(function(model, index) {
+                json.push(model.toJSON());
+            });
+            console.log(JSON.stringify(json));
+            return json;
+        },
+
         /**
          * @param obj object the object to add
 		 * @param options:

@@ -182,6 +182,7 @@ describe('Andalay:', function(){
 
         // toJSON
         it('should return array when calling toJSON method', function(){
+        	console.log(outcome);
         	var json = outcome.toJSON();
         	expect(json).toBeArray();
         	expect(json[0].collection)
