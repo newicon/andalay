@@ -1,4 +1,11 @@
 describe('Andalay:', function(){
+	
+	var OutcomeModel;
+	var OutcomeCollection;
+	var Contacts;
+	var outcome;
+	var $httpBackend;
+
 	//var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
 	beforeEach(angular.mock.module('Andalay'));
 
@@ -14,15 +21,17 @@ describe('Andalay:', function(){
 		        notes:'',
 		        data:{},
 		        definition:{},
-		        another:'hi'
+		        another:'hi',
 		    },
+		    url: '/outcome',
 		    getName: function(){
 		        return this.id + ' ' + this.label;
 		    }
 		});
 
 		OutcomeCollection = Andalay.Collection.extend({
-		    model:OutcomeModel
+		    model: OutcomeModel,
+		    url: '/outcome',
 		});
 
 	}));
@@ -48,7 +57,7 @@ describe('Andalay:', function(){
 	// 		expect(Andalay.Model).toBeDefined();
 	// 		expect(angular.isFunction(Andalay.Model.extend)).toBeTruthy();
 	// 	}));
-	// });
+	// }))
 
 	// test that we can reset a collection
 	describe('Test Andalay collection',function(){
@@ -182,11 +191,11 @@ describe('Andalay:', function(){
 
         // toJSON
         it('should return array when calling toJSON method', function(){
-        	console.log(outcome);
         	var json = outcome.toJSON();
         	expect(json).toBeArray();
         	expect(json[0].collection)
         })
+
         it('should remove the collection reference from the returned model when toJSON is called', function(){
         	var json = outcome.toJSON();
         	expect(json[0].collection).toBeUndefined();
@@ -201,12 +210,13 @@ describe('Andalay:', function(){
         // idAttribute
         it('should work with a custom id attribute of _id', function() {
         	var ContactModel = Andalay.Model.extend({
-        		idAttribute:'_id'
+        		idAttribute:'_id',
+        		url: 'contact',
         	});
         	var ContactCollection = Andalay.Collection.extend({
         		model:ContactModel
         	});
-        	var Contacts = new ContactCollection();
+        	Contacts = new ContactCollection();
         	Contacts.reset([
         		{
         			_id:100,
@@ -225,8 +235,93 @@ describe('Andalay:', function(){
         	var andrew = Contacts.get({_id:100});
         	expect(bob.name).toEqual('Bob');
         	expect(andrew.name).toEqual('Andrew');
-        })
+        });
 
+        it('should get a collection from the server', function() {
+   			outcomeCollection = new OutcomeCollection();
+			outcomeCollection.fetch().then(function() {
+				expect(outcomeCollection.models[2].parent).toBe('nocontact');
+			}, function(err) {
+				console.log('err', err);
+			});
+			$httpBackend.expectGET('/outcome').respond(200, resetData());
+			$httpBackend.flush();
+        });
+        
+		it('should get a collection from the server and parse a nonstandard response correctly', function() {
+   			OutcomeCollection = Andalay.Collection.extend({
+			    model: OutcomeModel,
+			    url: '/outcome',
+			    parse: function(response, options) {
+			    	return response.models;
+			    }
+			});
+   			outcomeCollection = new OutcomeCollection();
+			outcomeCollection.fetch().then(function() {
+				expect(outcomeCollection.models[2].parent).toBe('nocontact');
+			}, function(err) {
+				console.log('err', err);
+			});
+			$httpBackend.expectGET('/outcome').respond(200, {models: resetData()});
+			$httpBackend.flush();
+        });
+	});
+
+	describe('Test Andalay model', function() {
+		it('should find a model', function(){
+        	var person = Contacts.find(function(model) { return model.name == 'Bob' });
+        	expect(person.name).toBe('Bob');
+        });
+
+        it('should filter a model', function(){
+        	var people = Contacts.filter(function(model) { return (model.name == 'Bob' || model.name == 'Chris') });
+        	expect(people[0].name).toBe('Bob');
+        	expect(people[1].name).toBe('Chris');
+        });
+
+        it('should filter a model with .where', function(){
+        	var person = Contacts.where({'name': 'Bob'});
+        	expect(person[0].name).toBe('Bob');
+        	var person = Contacts.where({'name': 'Bob'}, true);
+        	expect(person.name).toBe('Bob');
+        });
+
+        it('should filter a model with .findWhere', function(){
+        	var person = Contacts.findWhere({'name': 'Bob'});
+        	expect(person.name).toBe('Bob');
+        });
+
+   //      it('should save a model to the server, and update the client side model', function(){
+   //      	// This isn't correct - the POST should be mirroring the data,
+   //      	// already defined in the model. Boo urns, rewrite it.
+   //      	outcomeModel = new OutcomeModel({
+			// 	url: '/outcome',
+			// });
+			// outcomeModel.save().then(function() {
+			// 	expect(outcomeModel.name).toBe('Bob');
+			// }, function(err) {
+			// 	console.log('err', err);
+			// });
+			// $httpBackend.expectPOST('/outcome').respond(200,{
+			// 	id: 1,
+			// 	name: 'Bob'
+			// });
+			// $httpBackend.flush();
+   //      });
+
+   //      it('should fetch a single model from the server', function(){
+   //      	outcomeModel = new OutcomeModel({id: 1});
+   //      	outcomeModel.fetch().then(function(response) {
+
+   //      	}, function(err) {
+
+   //      	});
+			// $httpBackend.expectGET('/outcome/1').respond(200,{
+			// 	id: 1,
+			// 	name: 'Bob'
+			// });
+			// $httpBackend.flush();
+   //      });
 	});
 
 	describe('Replicate addOne bug', function() {
@@ -270,6 +365,8 @@ describe('Andalay:', function(){
 		});
 	});
 });
+
+
 
 function resetData(){
 	return [
@@ -331,4 +428,15 @@ function resetData(){
 			description: 'Description goes here for donations'
 		}
 	];
+}
+
+function resetModelData() {
+	return {
+		id: 'nocontact',
+		parent: 0,
+		type: 'group',
+		label: 'No Contact',
+		description: 'Heres the description for no contact group',
+		children: ['deceased', 'movedhouse', 'businessnumber', 'faxnumber']
+	};
 }

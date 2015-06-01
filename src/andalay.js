@@ -129,6 +129,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		 * @returns promise
 		 */
 		save: function(options){
+
 			var method = this.isNew() ? 'create' : 'update';
 			options = _.defaults((options || {}), {validate:true});
 			this.setSaving(true);
@@ -461,8 +462,9 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		 */
 		fetch: function (options) {
 			options = options ? _.clone(options) : {};
-			if (options.parse === void 0)
+			if (options.parse === void 0) {
 				options.parse = true;
+            }
 			var collection = this;
 			collection.loading = true;
 			return this.sync('read', this, options).then(function(response){
@@ -602,7 +604,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
     };
 	
 	var urlError = function() {
-		throw new Error('A "url" property or function must be specified');
+		throw new Error('A "url" property or function must be specified in the collection. If the model is not added to a collection it should have a urlRoot property');
 	};
 	
     /**
