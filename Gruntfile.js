@@ -38,9 +38,8 @@ module.exports = function (grunt) {
 				configFile: 'karma.conf.js',
 				background: true
 			}
-		}
+		},
 	});
-
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
