@@ -304,19 +304,14 @@ describe('Andalay:', function(){
 			$httpBackend.flush();
         });
 
-   //      it('should fetch a single model from the server', function(){
-   //      	outcomeModel = new OutcomeModel({id: 1});
-   //      	outcomeModel.fetch().then(function(response) {
-
-   //      	}, function(err) {
-
-   //      	});
-			// $httpBackend.expectGET('/outcome/1').respond(200,{
-			// 	id: 1,
-			// 	name: 'Bob'
-			// });
-			// $httpBackend.flush();
-   //      });
+        it('should fetch a single model from the server', function(){
+        	outcomeModel = new OutcomeModel({id: 'nocontact'});
+        	outcomeModel.fetch().then(function(response) {
+        		expect(outcomeModel.label).toBe('No Contact');
+        	});
+			$httpBackend.expectGET('/outcome/nocontact').respond(200,resetModelData());
+			$httpBackend.flush();
+        });
 	});
 
 	describe('Replicate addOne bug', function() {
