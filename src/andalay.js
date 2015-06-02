@@ -1,5 +1,6 @@
 /**
  * Angular Andalay.
+ * ================
  * Andalay is essentially a fork of backbone, with a few key differences.
  * 1: no attributes array.  The attributes are the models properties.
  * 2: No events raised.
@@ -13,8 +14,6 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
     var Andalay = {};
 
     /**
-     * Andalay.Model
-     * -------------
      * Represents a singular model
      * Typically a collection contains an array of Andalay.Model objects
      * new Andalay.Model({name:'steve'});
@@ -135,7 +134,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          * resetting the collection when they arrive. 
          * If reset: true is passed, the response data will be passed through the reset method instead of set.
          * @param {type} options
-         * @returns {andalay_L10.Andalay.Collection.prototype@call;sync}
+         * @returns {promise}
          */
         fetch: function (options) {
             options = options ? _.clone(options) : {};

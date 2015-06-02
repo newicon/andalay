@@ -81,6 +81,8 @@
               </li>
               <li><a href="#idAttribute"><i class="alert alert-success"></i><span>idAttribute</span></a>
               </li>
+              <li><a href="#loading"><i class="alert alert-success"></i><span>loading</span></a>
+              </li>
               <li><a href="#saving"><i class="alert alert-success"></i><span>saving</span></a>
               </li>
               <li><a href="#defaults"><i class="alert alert-success"></i><span>defaults</span></a>
@@ -94,6 +96,8 @@
               <li><a href="#parse"><i class="alert alert-info"></i><span>parse</span></a>
               </li>
               <li><a href="#url"><i class="alert alert-info"></i><span>url</span></a>
+              </li>
+              <li><a href="#fetch"><i class="alert alert-info"></i><span>fetch</span></a>
               </li>
               <li><a href="#save"><i class="alert alert-info"></i><span>save</span></a>
               </li>
@@ -171,7 +175,8 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="description"><p>Angular Andalay.<br />Andalay is essentially a fork of backbone, with a few key differences.<br />1: no attributes array.  The attributes are the models properties.<br />2: No events raised.<br />Backbone-esc Models for Angular</p> </div>
+          <div class="description"><h1>Angular Andalay.</h1>
+<p>Andalay is essentially a fork of backbone, with a few key differences.<br />1: no attributes array.  The attributes are the models properties.<br />2: No events raised.<br />Backbone-esc Models for Angular</p> </div>
           <pre><code class="language-javascript">angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
     function($http ,  $q ,  $parse, _) {
     'use strict';
@@ -205,8 +210,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><h2>Andalay.Model</h2>
-<p>Represents a singular model<br />Typically a collection contains an array of Andalay.Model objects<br />new Andalay.Model({name:&#39;steve&#39;});</p> </div>
+          <div class="description"><p>Represents a singular model<br />Typically a collection contains an array of Andalay.Model objects<br />new Andalay.Model({name:&#39;steve&#39;});</p> </div>
           <pre><code class="language-javascript">Andalay.Model = function(attributes, options) {
     // extend the model with default properties, override defaults if specified in attributes
     var attrs = attributes || {};
@@ -238,6 +242,15 @@
           </section>
           <div class="description"><p>Stores the name of the attribute (property) that the id value is stored in</p> </div>
           <pre><code class="language-javascript">idAttribute: 'id',</code></pre>
+          <section id="loading">
+            <h1>loading</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.loading</span>
+            </p>
+          </section>
+          <div class="description"><p>boolean whether the model is currently loading</p> </div>
+          <pre><code class="language-javascript">loading: false,</code></pre>
           <section id="saving">
             <h1>saving</h1>
             <h5 class="subheader"></h5>
@@ -370,6 +383,45 @@ validate: function() {
 
 sync: function() {
 	return Andalay.sync.apply(this, arguments);
+},</code></pre>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.fetch()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>options</td>
+                <td>type</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Fetch the default set of models for this collection,<br />resetting the collection when they arrive.<br />If reset: true is passed, the response data will be passed through the reset method instead of set.</p> </div>
+          <pre><code class="language-javascript">fetch: function (options) {
+    options = options ? _.clone(options) : {};
+    if (options.parse === void 0) {
+        options.parse = true;
+    }
+    var model = this;
+    model.loading = true;
+    return this.sync('read', this, options).then(function(response){
+        model.loading = false;
+        var data = options.parse ? model.parse(response.data) : response.data;
+        angular.extend(model, data);
+    }, function(err){
+        throw new Error('Error retrieving model');
+    });
 },</code></pre>
           <section id="save">
             <h1>save</h1>
@@ -1059,7 +1111,8 @@ sync: function() {
 	collection.loading = true;
 	return this.sync('read', this, options).then(function(response){
 		collection.loading = false;
-		collection.addMany(collection.parse(response.data));
+                var data = options.parse ? collection.parse(response.data) : response.data;
+		collection.addMany(data);
 	}, function(){
 		// error
 	});
