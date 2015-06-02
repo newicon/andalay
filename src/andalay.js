@@ -16,8 +16,10 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
     /**
      * Represents a singular model
      * Typically a collection contains an array of Andalay.Model objects
+	 * 
+	 * ~~~js
      * new Andalay.Model({name:'steve'});
-     *
+     * ~~~
      * @class Andalay  Andalay for AngularJS
      * @constructor
      * @param {Object} [attributes]  Initialize the record with these property values.
@@ -75,8 +77,8 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		 */
         toJSON: function() {
             var json = angular.copy(this);
-            delete json['collection'];
-            delete json['cid'];
+            delete json.collection;
+            delete json.cid;
             return json;
         },
 		
@@ -130,9 +132,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		},
 		
         /**
-         * Fetch the default set of models for this collection, 
-         * resetting the collection when they arrive. 
-         * If reset: true is passed, the response data will be passed through the reset method instead of set.
+         * Fetch the model with its ID.
          * @param {type} options
          * @returns {promise}
          */
@@ -160,7 +160,6 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		 * @returns promise
 		 */
 		save: function(options){
-
 			var method = this.isNew() ? 'create' : 'update';
 			options = _.defaults((options || {}), {validate:true});
 			this.setSaving(true);
@@ -181,6 +180,26 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 				deferred.reject(response);
 			});
 		},
+
+        /**
+         * Delete the model on the server, and
+         * remove it from its parent collection.
+         * @returns promise
+         */
+        delete: function () {
+            var model = this;
+            model.loading = true;
+            return this.sync('delete', this).then(function(response){
+                model.loading = false;
+                if (angular.isDefined(model.collection)) {
+                    model.collection.remove(model.id);
+                }
+                model[model.idAttribute] = null;
+
+            }, function(err){
+                throw new Error('Error deleting model');
+            });
+        },
 		
 		// store errors
 		_errors:{},
@@ -404,12 +423,12 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         /**
          * Remove a model
          * @param id
-         * @return the removed model or null if no model found to remove
+         * @return the removed model or undefined if no model found to remove
          */
         remove: function(id) {
             var model = this.get(id);
             if (model == null)
-                return null;
+                return void 0;
             this._removeReference(model);
             var index = _.indexOf(this.models, model);
             this.models.splice(index, 1);

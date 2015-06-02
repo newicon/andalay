@@ -101,6 +101,8 @@
               </li>
               <li><a href="#save"><i class="alert alert-info"></i><span>save</span></a>
               </li>
+              <li><a href="#delete"><i class="alert alert-info"></i><span>delete</span></a>
+              </li>
               <li><a href="#setSaving"><i class="alert alert-info"></i><span>setSaving</span></a>
               </li>
               <li><a href="#Collection"><i class="alert alert-info"></i><span>Collection</span></a>
@@ -210,7 +212,9 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Represents a singular model<br />Typically a collection contains an array of Andalay.Model objects<br />new Andalay.Model({name:&#39;steve&#39;});</p> </div>
+          <div class="description"><p>Represents a singular model<br />Typically a collection contains an array of Andalay.Model objects</p><pre><code class="lang-js">new Andalay.Model({name:&#39;steve&#39;});
+</code></pre>
+ </div>
           <pre><code class="language-javascript">Andalay.Model = function(attributes, options) {
     // extend the model with default properties, override defaults if specified in attributes
     var attrs = attributes || {};
@@ -288,8 +292,8 @@
           <div class="description"><p>returns an object that can be json-ified</p> </div>
           <pre><code class="language-javascript">toJSON: function() {
     var json = angular.copy(this);
-    delete json['collection'];
-    delete json['cid'];
+    delete json.collection;
+    delete json.cid;
     return json;
 },</code></pre>
           <section id="has">
@@ -407,7 +411,7 @@ sync: function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Fetch the default set of models for this collection,<br />resetting the collection when they arrive.<br />If reset: true is passed, the response data will be passed through the reset method instead of set.</p> </div>
+          <div class="description"><p>Fetch the model with its ID.</p> </div>
           <pre><code class="language-javascript">fetch: function (options) {
     options = options ? _.clone(options) : {};
     if (options.parse === void 0) {
@@ -432,7 +436,6 @@ sync: function() {
           </section>
           <div class="description"><p>Saves the current model to the backend<br />options {<br />  validate:false (prevents validation and forces save) defaults to true<br />}</p> </div>
           <pre><code class="language-javascript">save: function(options){
-
 	var method = this.isNew() ? 'create' : 'update';
 	options = _.defaults((options || {}), {validate:true});
 	this.setSaving(true);
@@ -452,10 +455,32 @@ sync: function() {
 		model._errors = response.data;
 		deferred.reject(response);
 	});
-},
+},</code></pre>
+          <section id="delete">
+            <h1>delete</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.delete()</span>
+            </p>
+          </section>
+          <div class="description"><p>Delete the model on the server, and<br />remove it from its parent collection.</p> </div>
+          <pre><code class="language-javascript">delete: function () {
+    var model = this;
+    model.loading = true;
+    return this.sync('delete', this).then(function(response){
+        model.loading = false;
+        if (angular.isDefined(model.collection)) {
+            model.collection.remove(model.id);
+        }
+        model[model.idAttribute] = null;
 
-// store errors
-_errors:{},</code></pre>
+    }, function(err){
+        throw new Error('Error deleting model');
+    });
+},
+		
+		// store errors
+		_errors:{},</code></pre>
           <section id="setSaving">
             <h1>setSaving</h1>
             <h5 class="subheader"></h5>
@@ -914,7 +939,7 @@ _errors:{},</code></pre>
               <tr>
                 <td>return</td>
                 <td></td>
-                <td><p>the removed model or null if no model found to remove</p></td>
+                <td><p>the removed model or undefined if no model found to remove</p></td>
               </tr>
             </tbody>
           </table>
@@ -922,7 +947,7 @@ _errors:{},</code></pre>
           <pre><code class="language-javascript">remove: function(id) {
     var model = this.get(id);
     if (model == null)
-        return null;
+        return void 0;
     this._removeReference(model);
     var index = _.indexOf(this.models, model);
     this.models.splice(index, 1);

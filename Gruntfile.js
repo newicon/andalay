@@ -44,7 +44,7 @@ module.exports = function (grunt) {
 				src: 'src/',
 				target: 'docs/api',
 				options: {
-					template: 'template.jade'
+					template: 'docs/template.jade'
 				}
 			}
 		}
