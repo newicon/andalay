@@ -51,18 +51,9 @@
     </style>
   </head>
   <body data-spy="scroll" data-target=".scrollspy">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container"><a class="brand">Doxx</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right sponsored"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
     <header id="overview" class="jumbotron subhead">
       <div class="container">
-        <h1>Andalay</h1>
+        <h1>Andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
         <p class="lead"></p>
       </div>
     </header>
@@ -198,10 +189,26 @@
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td>@property</td>
+                <td>object</td>
+                <td><p>Andalay Model</p></td>
+              </tr>
+              <tr>
+                <td>@property</td>
+                <td>object</td>
+                <td><p>Andalay Collection</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Andalay</p></td>
+              </tr>
             </tbody>
           </table>
           <div class="description"><h1>Angular Andalay.</h1>
-<p>Andalay is essentially a fork of Backbone, with a few key differences.<br />1: No attributes array.  The attributes are the models properties.<br />2: No events raised; Angular&#39;s two way data binding takes care of watching data changes for us.<br />Backbone-esc Models for Angular</p> </div>
+<h4>In a nutshell: Backbone-esc Models for Angular.</h4>
+<p>Andalay is essentially a fork of Backbone, with a few key differences.<br />1: No attributes array.  The attributes are the model properties.<br />2: No events raised. Angular&#39;s two way data binding takes care of watching for data changes.</p> </div>
           <pre><code class="language-javascript">angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
 	function($http ,  $q ,  $parse, _) {
 	'use strict';
@@ -1797,11 +1804,10 @@ return Andalay;
         </div>
       </div>
     </div>
+    <hr>
     <footer class="footer">
       <div class="container">
-        <p>Documentation generated with <a href="https://github.com/FGRibreau/doxx">Doxx </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
-        <p>Doxx is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
-        <p>Theme borrowed from Twitter Bootstrap</p>
+        <p>Created by Newicon <a href="https://twitter.com/newicon" data-show-count="false" class="twitter-follow-button"> </a></p>
       </div>
     </footer>
     <script src="http://platform.twitter.com/widgets.js"></script>

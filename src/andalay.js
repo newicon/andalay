@@ -1,11 +1,14 @@
 /**
  * Angular Andalay.
  * ================
+ * ####In a nutshell: Backbone-esc Models for Angular. 
  * Andalay is essentially a fork of Backbone, with a few key differences.
- * 1: No attributes array.  The attributes are the models properties.
- * 2: No events raised; Angular's two way data binding takes care of watching data changes for us.
- * Backbone-esc Models for Angular
+ * 1: No attributes array.  The attributes are the model properties.
+ * 2: No events raised. Angular's two way data binding takes care of watching for data changes.
  * @author Steve O'Brien, Newicon Ltd
+ * @property {object} @property Andalay Model
+ * @property {object} @property Andalay Collection
+ * @return {object} Andalay
  */
 angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
 	function($http ,  $q ,  $parse, _) {

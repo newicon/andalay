@@ -6,7 +6,7 @@ describe('Andalay:', function(){
 	var outcome;
 	var $httpBackend;
 
-	//var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
+	// var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
 	beforeEach(angular.mock.module('Andalay'));
 
 	beforeEach(inject(function(_$httpBackend_, _$q_, _Andalay_){
@@ -33,7 +33,6 @@ describe('Andalay:', function(){
 		    model: OutcomeModel,
 		    url: '/outcome',
 		});
-
 	}));
 
 	afterEach(function(){
