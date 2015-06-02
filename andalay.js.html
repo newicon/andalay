@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width" charset="utf-8">
     <title>Andalay</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <style>
       body > .navbar .brand {
         float:left;
@@ -208,8 +207,8 @@
           </table>
           <div class="description"><h1>Angular Andalay.</h1>
 <h4>In a nutshell: Backbone-esc Models for Angular.</h4>
-<p>Andalay is essentially a fork of Backbone, with a few key differences.<br />1: No attributes array.  The attributes are the model properties.<br />2: No events raised. Angular&#39;s two way data binding takes care of watching for data changes.</p> </div>
-          <pre><code class="language-javascript">angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
+<p>Andalay is essentially a fork of Backbone, with a few key differences.<br />1: No attributes array.  The attributes are the model properties.<br />2: No events raised. Angular&#39;s two way data binding takes care of watching for data changes.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
 	function($http ,  $q ,  $parse, _) {
 	'use strict';
 
@@ -249,8 +248,8 @@
           </table>
           <div class="description"><p>Represents a singular model.<br />Typically a collection contains an array of Andalay.Model objects.</p><pre><code class="lang-js">new Andalay.Model({name:&#39;steve&#39;});
 </code></pre>
- </div>
-          <pre><code class="language-javascript">Andalay.Model = function(attributes, options) {
+ </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model = function(attributes, options) {
 	// extend the model with default properties, override defaults if specified in attributes
 	var attrs = attributes || {};
 	options = options || {};
@@ -286,8 +285,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Define the Model&#39;s inheritable methods.</p> </div>
-          <pre><code class="language-javascript">Andalay.Model.prototype = {</code></pre>
+          <div class="description"><p>Define the Model&#39;s inheritable methods.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model.prototype = {</code></pre>
           <section id="idAttribute">
             <h1>idAttribute</h1>
             <h5 class="subheader"></h5>
@@ -295,8 +294,8 @@
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.idAttribute</span>
             </p>
           </section>
-          <div class="description"><p><code>string</code> Stores the name of the attribute (property) that the id value is stored in.</p> </div>
-          <pre><code class="language-javascript">idAttribute: 'id',</code></pre>
+          <div class="description"><p><code>string</code> Stores the name of the attribute (property) that the id value is stored in.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">idAttribute: 'id',</code></pre>
           <section id="loading">
             <h1>loading</h1>
             <h5 class="subheader"></h5>
@@ -304,8 +303,8 @@
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.loading</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether the model is currently loading.</p> </div>
-          <pre><code class="language-javascript">loading: false,</code></pre>
+          <div class="description"><p><code>boolean</code> whether the model is currently loading.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">loading: false,</code></pre>
           <section id="saving">
             <h1>saving</h1>
             <h5 class="subheader"></h5>
@@ -313,8 +312,8 @@
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.saving</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether the model is currently saving.</p> </div>
-          <pre><code class="language-javascript">saving: false,</code></pre>
+          <div class="description"><p><code>boolean</code> whether the model is currently saving.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">saving: false,</code></pre>
           <section id="defaults">
             <h1>defaults</h1>
             <h5 class="subheader"></h5>
@@ -322,8 +321,8 @@
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.defaults</span>
             </p>
           </section>
-          <div class="description"><p><code>object</code> define default attributes to set on this model.</p> </div>
-          <pre><code class="language-javascript">defaults: {},</code></pre>
+          <div class="description"><p><code>object</code> define default attributes to set on this model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">defaults: {},</code></pre>
           <section id="initialize">
             <h1>initialize</h1>
             <h5 class="subheader"></h5>
@@ -331,8 +330,8 @@
               <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.initialize()</span>
             </p>
           </section>
-          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div>
-          <pre><code class="language-javascript">initialize: function() {},</code></pre>
+          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">initialize: function() {},</code></pre>
           <section id="toJSON">
             <h1>toJSON</h1>
             <h5 class="subheader"></h5>
@@ -356,8 +355,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns an object that can be json-ified.</p> </div>
-          <pre><code class="language-javascript">toJSON: function() {
+          <div class="description"><p>Returns an object that can be json-ified.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">toJSON: function() {
 	var json = angular.copy(this);
 	delete json.collection;
 	delete json.cid;
@@ -391,8 +390,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Whether the model has a specified property.</p> </div>
-          <pre><code class="language-javascript">has: function(property){
+          <div class="description"><p>Whether the model has a specified property.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">has: function(property){
 	return angular.isDefined(this[property]);
 },</code></pre>
           <section id="parse">
@@ -428,8 +427,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div>
-          <pre><code class="language-javascript">parse: function(response, options) {
+          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">parse: function(response, options) {
 	return response;
 },</code></pre>
           <section id="isNew">
@@ -455,8 +454,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>A model without an id attribute is considered to be new.</p> </div>
-          <pre><code class="language-javascript">isNew: function() {
+          <div class="description"><p>A model without an id attribute is considered to be new.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">isNew: function() {
 	return !this.has(this.idAttribute);
 },</code></pre>
           <section id="isValid">
@@ -482,8 +481,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Return the result of the model&#39;s validation function.</p> </div>
-          <pre><code class="language-javascript">isValid: function() {
+          <div class="description"><p>Return the result of the model&#39;s validation function.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">isValid: function() {
 	return this.validate();
 },</code></pre>
           <section id="url">
@@ -509,8 +508,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>You can override this function to provide the url for this model resource.</p> </div>
-          <pre><code class="language-javascript">url: function() {
+          <div class="description"><p>You can override this function to provide the url for this model resource.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">url: function() {
 	var base =
 	  _.result(this, 'urlRoot') ||
 	  _.result(this.collection, 'url') ||
@@ -542,8 +541,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Override this function to provide custom validation rules.</p> </div>
-          <pre><code class="language-javascript">validate: function() {
+          <div class="description"><p>Override this function to provide custom validation rules.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">validate: function() {
 	return true;
 },</code></pre>
           <section id="sync">
@@ -569,8 +568,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>A proxy to Andalay.sync().</p> </div>
-          <pre><code class="language-javascript">sync: function() {
+          <div class="description"><p>A proxy to Andalay.sync().</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">sync: function() {
 	return Andalay.sync.apply(this, arguments);
 },</code></pre>
           <section id="fetch">
@@ -596,8 +595,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Fetch the model with its ID.</p> </div>
-          <pre><code class="language-javascript">fetch: function (options) {
+          <div class="description"><p>Fetch the model with its ID.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">fetch: function (options) {
 	options = options ? _.clone(options) : {};
 	if (options.parse === void 0) {
 		options.parse = true;
@@ -640,8 +639,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Saves the current model to the backend.</p> </div>
-          <pre><code class="language-javascript">save: function(options){
+          <div class="description"><p>Saves the current model to the backend.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">save: function(options){
 	var method = this.isNew() ? 'create' : 'update';
 	options = _.defaults((options || {}), {validate:true});
 	this.setSaving(true);
@@ -685,8 +684,8 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Delete the model on the server, and remove it from its parent collection.</p> </div>
-          <pre><code class="language-javascript">delete: function() {
+          <div class="description"><p>Delete the model on the server, and remove it from its parent collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">delete: function() {
 	var model = this;
 	model.loading = true;
 	return this.sync('delete', this).then(function(response){
@@ -725,8 +724,8 @@ _errors:{},</code></pre>
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Sets the saving address</p> </div>
-          <pre><code class="language-javascript">setSaving: function(isSaving) {
+          <div class="description"><p>Sets the saving address</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">setSaving: function(isSaving) {
 	this.saving = isSaving;
 	if (this.collection) {
 		this.collection.saving = isSaving;
@@ -778,8 +777,8 @@ Andalay.Model.prototype[method] = function() {
             </tbody>
           </table>
           <div class="description"><h2>Andalay.Collection</h2>
-<p>Represents a collection of Andalay.Model objects.<br />Creates a new <code>Collection</code>, to contain a specific type of <code>Model</code>.</p> </div>
-          <pre><code class="language-javascript">Andalay.Collection = function(models, options) {
+<p>Represents a collection of Andalay.Model objects.<br />Creates a new <code>Collection</code>, to contain a specific type of <code>Model</code>.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Collection = function(models, options) {
 	options = options || {};
 	if (options.model) this.model = options.model;
 	this._reset();
@@ -793,8 +792,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">prototype</div><span>Andalay.Collection.prototype</span>
             </p>
           </section>
-          <div class="description"><p>Define the collection&#39;s inheritable methods.</p> </div>
-          <pre><code class="language-javascript">Andalay.Collection.prototype = {</code></pre>
+          <div class="description"><p>Define the collection&#39;s inheritable methods.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Collection.prototype = {</code></pre>
           <section id="model">
             <h1>model</h1>
             <h5 class="subheader"></h5>
@@ -802,8 +801,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.model</span>
             </p>
           </section>
-          <div class="description"><p><code>object</code> The default model for a collection is just a <strong>Backbone.Model</strong>.<br />This should be overridden in most cases.</p> </div>
-          <pre><code class="language-javascript">model: Andalay.Model,</code></pre>
+          <div class="description"><p><code>object</code> The default model for a collection is just a <strong>Backbone.Model</strong>.<br />This should be overridden in most cases.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">model: Andalay.Model,</code></pre>
           <section id="loading">
             <h1>loading</h1>
             <h5 class="subheader"></h5>
@@ -811,8 +810,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.loading</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether the collection is currently loading</p> </div>
-          <pre><code class="language-javascript">loading:false,</code></pre>
+          <div class="description"><p><code>boolean</code> whether the collection is currently loading</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">loading:false,</code></pre>
           <section id="saving">
             <h1>saving</h1>
             <h5 class="subheader"></h5>
@@ -820,8 +819,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.saving</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether a model within the collection is currently saving</p> </div>
-          <pre><code class="language-javascript">saving: false,</code></pre>
+          <div class="description"><p><code>boolean</code> whether a model within the collection is currently saving</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">saving: false,</code></pre>
           <section id="models">
             <h1>models</h1>
             <h5 class="subheader"></h5>
@@ -829,8 +828,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.models</span>
             </p>
           </section>
-          <div class="description"><p><code>array</code> Stores the list of models</p> </div>
-          <pre><code class="language-javascript">models: [],</code></pre>
+          <div class="description"><p><code>array</code> Stores the list of models</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">models: [],</code></pre>
           <section id="_index">
             <h1>_index</h1>
             <h5 class="subheader"></h5>
@@ -838,8 +837,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection._index</span>
             </p>
           </section>
-          <div class="description"><p><code>object</code> Stores an indexed array of objects id:object and cid:object</p> </div>
-          <pre><code class="language-javascript">_index:{},</code></pre>
+          <div class="description"><p><code>object</code> Stores an indexed array of objects id:object and cid:object</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_index:{},</code></pre>
           <section id="length">
             <h1>length</h1>
             <h5 class="subheader"></h5>
@@ -847,8 +846,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.length</span>
             </p>
           </section>
-          <div class="description"><p><code>int</code> Mirrors the length of the models array</p> </div>
-          <pre><code class="language-javascript">length: 0,</code></pre>
+          <div class="description"><p><code>int</code> Mirrors the length of the models array</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">length: 0,</code></pre>
           <section id="initialize">
             <h1>initialize</h1>
             <h5 class="subheader"></h5>
@@ -856,8 +855,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.initialize()</span>
             </p>
           </section>
-          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div>
-          <pre><code class="language-javascript">initialize: function(properties, options) {},</code></pre>
+          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">initialize: function(properties, options) {},</code></pre>
           <section id="toJSON">
             <h1>toJSON</h1>
             <h5 class="subheader"></h5>
@@ -881,8 +880,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns an object that can be json-ified.</p> </div>
-          <pre><code class="language-javascript">toJSON: function() {
+          <div class="description"><p>Returns an object that can be json-ified.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">toJSON: function() {
 	var json = [];
 	this.forEach(function(model, index) {
 		json.push(model.toJSON());
@@ -922,8 +921,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Add a Model to the collection. If the model already exists in the collection, extend it.</p> </div>
-          <pre><code class="language-javascript">addOne: function(obj, options) {
+          <div class="description"><p>Add a Model to the collection. If the model already exists in the collection, extend it.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">addOne: function(obj, options) {
 	var id, existing, index;
 	options = options || {};
 	if (_.isArray(obj))
@@ -979,8 +978,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div>
-          <pre><code class="language-javascript">parse: function(response, options) {
+          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">parse: function(response, options) {
 	return response;
 },</code></pre>
           <section id="addMany">
@@ -1013,8 +1012,8 @@ Andalay.Model.prototype[method] = function() {
           </table>
           <div class="description"><p>Add an array of objects to the collection.<br />It will merge if the object already exists and add if it does not.<br />For example:</p><pre><code class="lang-js">var myCollection = Collection.addMany([{name:&#39;test object&#39;},{name:&#39;another test object&#39;}])
 </code></pre>
- </div>
-          <pre><code class="language-javascript">addMany: function(models) {
+ </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">addMany: function(models) {
 	if (!_.isArray(models)) {
 		throw new Error('Cannot add ' + models + ', models must be an array of objects');
 	}
@@ -1053,8 +1052,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Proxy to addMany.</p> </div>
-          <pre><code class="language-javascript">updateMany: function(models) {
+          <div class="description"><p>Proxy to addMany.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">updateMany: function(models) {
 	return this.addMany(models);
 },</code></pre>
           <section id="reset">
@@ -1085,8 +1084,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>When you have more items than you want to add or remove individually,<br />you can reset the entire set with a new list of models.</p> </div>
-          <pre><code class="language-javascript">reset: function (models) {
+          <div class="description"><p>When you have more items than you want to add or remove individually,<br />you can reset the entire set with a new list of models.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">reset: function (models) {
 	this._reset();
 	if (models)
 		return this.addMany(models);
@@ -1120,8 +1119,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Get a model from the collection by id.</p> </div>
-          <pre><code class="language-javascript">get: function(obj) {
+          <div class="description"><p>Get a model from the collection by id.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">get: function(obj) {
 	// Must specify a valid object or id.
 	// Allow ids of value 0.
 	if (!obj &amp;&amp; obj !== 0) return void 0;
@@ -1155,8 +1154,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns whether a model exists in the collection with the id.</p> </div>
-          <pre><code class="language-javascript">exists: function(id) {
+          <div class="description"><p>Returns whether a model exists in the collection with the id.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">exists: function(id) {
 	return !angular.isUndefined(this.get(id));
 },</code></pre>
           <section id="update">
@@ -1187,8 +1186,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Update a model.</p> </div>
-          <pre><code class="language-javascript">update: function(model) {
+          <div class="description"><p>Update a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">update: function(model) {
 	return this.addOne(model);
 },</code></pre>
           <section id="remove">
@@ -1219,8 +1218,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Remove a model.</p> </div>
-          <pre><code class="language-javascript">remove: function(id) {
+          <div class="description"><p>Remove a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">remove: function(id) {
 	var model = this.get(id);
 	if (_.isUndefined(model)) {
 		return void 0;
@@ -1254,8 +1253,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Removes all models from the collection.</p> </div>
-          <pre><code class="language-javascript">removeAll: function() {
+          <div class="description"><p>Removes all models from the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">removeAll: function() {
 	this.reset();
 	return this;
 },</code></pre>
@@ -1287,8 +1286,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns the id value of the passed in Model.</p> </div>
-          <pre><code class="language-javascript">modelId: function (object) {
+          <div class="description"><p>Returns the id value of the passed in Model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">modelId: function (object) {
 	return object[this.model.prototype.idAttribute || 'id'];
 },</code></pre>
           <section id="last">
@@ -1314,8 +1313,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Gets the last model in the collection.</p> </div>
-          <pre><code class="language-javascript">last: function() {
+          <div class="description"><p>Gets the last model in the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">last: function() {
 	return this.models[this.length-1];
 },</code></pre>
           <section id="at">
@@ -1346,8 +1345,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns the model at the specified position in the array.</p> </div>
-          <pre><code class="language-javascript">at: function(index) {
+          <div class="description"><p>Returns the model at the specified position in the array.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">at: function(index) {
 	return this.models[index];
 },</code></pre>
           <section id="size">
@@ -1373,8 +1372,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Returns the size of the collection.</p> </div>
-          <pre><code class="language-javascript">size: function() {
+          <div class="description"><p>Returns the size of the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">size: function() {
 	return this.models.length;
 },</code></pre>
           <section id="all">
@@ -1400,8 +1399,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Get all models in the collection as array.</p> </div>
-          <pre><code class="language-javascript">all: function() {
+          <div class="description"><p>Get all models in the collection as array.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">all: function() {
 	return this.models;
 },</code></pre>
           <section id="where">
@@ -1432,8 +1431,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Return models with matching attributes. Useful for simple cases of filter.</p> </div>
-          <pre><code class="language-javascript">where: function (attrs, first) {
+          <div class="description"><p>Return models with matching attributes. Useful for simple cases of filter.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">where: function (attrs, first) {
 	var matches = _.matches(attrs);
 	return this[first ? 'find' : 'filter'](function (model) {
 		return matches(model);
@@ -1462,8 +1461,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Return the first model with matching attributes. Useful for simple cases of find.</p> </div>
-          <pre><code class="language-javascript">findWhere: function (attrs) {
+          <div class="description"><p>Return the first model with matching attributes. Useful for simple cases of find.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">findWhere: function (attrs) {
 	return this.where(attrs, true);
 },</code></pre>
           <section id="sync">
@@ -1489,8 +1488,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>A proxy to Andalay.sync().</p> </div>
-          <pre><code class="language-javascript">sync: function() {
+          <div class="description"><p>A proxy to Andalay.sync().</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">sync: function() {
 	return Andalay.sync.apply(this, arguments);
 },</code></pre>
           <section id="fetch">
@@ -1516,8 +1515,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Fetch the default set of models for this collection from the server,<br />resetting the collection when they arrive. If <code>reset: true</code> is passed,<br />the response data will be passed through the reset method instead of set.</p> </div>
-          <pre><code class="language-javascript">fetch: function (options) {
+          <div class="description"><p>Fetch the default set of models for this collection from the server,<br />resetting the collection when they arrive. If <code>reset: true</code> is passed,<br />the response data will be passed through the reset method instead of set.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">fetch: function (options) {
 	options = options ? _.clone(options) : {};
 	if (options.parse === void 0) {
 		options.parse = true;
@@ -1539,8 +1538,8 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._reset()</span>
             </p>
           </section>
-          <div class="description"><p>Private method to reset all internal state. Called when the collection<br />is first initialized or reset.</p> </div>
-          <pre><code class="language-javascript">_reset: function() {
+          <div class="description"><p>Private method to reset all internal state. Called when the collection<br />is first initialized or reset.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_reset: function() {
 	this.length = 0;
 	this.models = [];
 	this._index = {};
@@ -1573,8 +1572,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Prepare a hash of attributes (or other model) to be added to this<br />collection.</p> </div>
-          <pre><code class="language-javascript">_prepareModel: function(object) {
+          <div class="description"><p>Prepare a hash of attributes (or other model) to be added to this<br />collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_prepareModel: function(object) {
 	var model = object;
 	if (object instanceof Andalay.Model) {
 		model = object;
@@ -1612,8 +1611,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Adds the model to the internal index (idIndex).<br />This essentially makes the collection aware of the model,<br />as it uses this index to search for models both by its autogenerated<br />client id and by its idAttribute if it exists and is not null.</p> </div>
-          <pre><code class="language-javascript">_addReference: function(model) {
+          <div class="description"><p>Adds the model to the internal index (idIndex).<br />This essentially makes the collection aware of the model,<br />as it uses this index to search for models both by its autogenerated<br />client id and by its idAttribute if it exists and is not null.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_addReference: function(model) {
 	this._index[model.cid] = model;
 	var id = this.modelId(model);
 	if (angular.isDefined(id) &amp;&amp; id !== null) {
@@ -1643,8 +1642,8 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Removes all internal references to a model.</p> </div>
-          <pre><code class="language-javascript">_removeReference: function(model) {
+          <div class="description"><p>Removes all internal references to a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_removeReference: function(model) {
 	delete this._index[model.cid];
 	var id = this.modelId(model);
 	if (angular.isDefined(id) &amp;&amp; id !== null) {
@@ -1709,8 +1708,8 @@ Andalay.Collection.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>The point at which Andalay interacts with the $http service to persist model data.</p> </div>
-          <pre><code class="language-javascript">Andalay.sync = function(method, model, options) {
+          <div class="description"><p>The point at which Andalay interacts with the $http service to persist model data.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.sync = function(method, model, options) {
 	var methodMap = {
 		'create': 'POST',
 		'update': 'PUT',
@@ -1764,8 +1763,8 @@ Andalay.Collection.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Create a subclass.<br />Shamelessly pinched from backbone.</p> </div>
-          <pre><code class="language-javascript">var extend = function(protoProps, staticProps) {
+          <div class="description"><p>Create a subclass.<br />Shamelessly pinched from backbone.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">var extend = function(protoProps, staticProps) {
 	var parent = this;
 	var child;
 	if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
@@ -1796,8 +1795,8 @@ var urlError = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.extend</span>
             </p>
           </section>
-          <div class="description"><p>Add extend function to Objects</p> </div>
-          <pre><code class="language-javascript">Andalay.Model.extend = Andalay.Collection.extend = extend;
+          <div class="description"><p>Add extend function to Objects</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model.extend = Andalay.Collection.extend = extend;
 
 return Andalay;
 }]);</code></pre>
@@ -1829,6 +1828,11 @@ return Andalay;
     <!-- App js-->
     <script>
       $(function(){
+        $('.codeToggle').click(function(){
+          $pretag = $(this).next();
+          $pretag.toggleClass('hidden');
+          return false;
+        })
         var $window = $(window);
         $('.scrollspy .nav').affix({
           offset: {
