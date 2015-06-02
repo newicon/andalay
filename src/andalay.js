@@ -49,6 +49,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
          */
         idAttribute: 'id',
 
+        /**
+         * boolean whether the model is currently loading
+         */
+        loading: false,
+
 		/**
 		 * A boolean whther the model is currently saving
 		 */
@@ -125,6 +130,29 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 			return Andalay.sync.apply(this, arguments);
 		},
 		
+        /**
+         * Fetch the default set of models for this collection, 
+         * resetting the collection when they arrive. 
+         * If reset: true is passed, the response data will be passed through the reset method instead of set.
+         * @param {type} options
+         * @returns {andalay_L10.Andalay.Collection.prototype@call;sync}
+         */
+        fetch: function (options) {
+            options = options ? _.clone(options) : {};
+            if (options.parse === void 0) {
+                options.parse = true;
+            }
+            var model = this;
+            model.loading = true;
+            return this.sync('read', this, options).then(function(response){
+                model.loading = false;
+                var data = options.parse ? model.parse(response.data) : response.data;
+                angular.extend(model, data);
+            }, function(err){
+                throw new Error('Error retrieving model');
+            });
+        },
+
 		/**
 		 * Saves the current model to the backend
 		 * options {
@@ -481,7 +509,8 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 			collection.loading = true;
 			return this.sync('read', this, options).then(function(response){
 				collection.loading = false;
-				collection.addMany(collection.parse(response.data));
+                var data = options.parse ? collection.parse(response.data) : response.data;
+				collection.addMany(data);
 			}, function(){
 				// error
 			});
