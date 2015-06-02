@@ -40,6 +40,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 
     /**
      * Define the Model's inheritable methods.
+	 * @property urlRoot
      */
     Andalay.Model.prototype = {
 
@@ -103,6 +104,9 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 			return this.validate();
 		},
 		
+		/**
+		 * You can override this function to provide the url for this model resource
+		 */
 		url: function() {
 			var base =
 			  _.result(this, 'urlRoot') ||
@@ -184,8 +188,8 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
      * Represents a collection of Andalay.Model objects
      * Define the Collection's inheritable methods.
      * Create a new **Collection**, to contain a specific type of `model`.
-     * @param array models - array of objects|models to add to the collection
-     * @param object options passing a property of model sets the model property
+     * @param {Array} models - array of objects|models to add to the collection
+     * @param {Object} options passing a property of model sets the model property
      * of the collection:
      * MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})
      */
@@ -292,6 +296,10 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		},
         
         /**
+		 * Example:
+		 * ~~~js
+		 * var mycollection = Collection.addMany([{name:'test'}])
+		 * ~~~
          * @param models array of objects
          * @throw error if models param is not an array
          * @returns array of added or prexisting models
@@ -321,9 +329,12 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         /** 
          * When you have more items than you want to add or remove individually,
          * you can reset the entire set with a new list of models
-		 * @param options object {
+		 * @param {Object} options object {
+		 * ~~~
+		 * {
 		 *		parse:true // runs the parse method of each object added
 		 * } 
+		 * ~~~
 		 * @return array of models that the collection has been reset to
          */
         reset: function (models) {
@@ -459,7 +470,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		 * resetting the collection when they arrive. 
 		 * If reset: true is passed, the response data will be passed through the reset method instead of set.
 		 * @param {type} options
-		 * @returns {andalay_L10.Andalay.Collection.prototype@call;sync}
+		 * @returns {promise}
 		 */
 		fetch: function (options) {
 			options = options ? _.clone(options) : {};
@@ -488,7 +499,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         
         /**
          * Prepare a hash of attributes (or other model) to be added to this
-         * collection.
+         * collection
          */
         _prepareModel: function(object) {
             var model = object;
@@ -511,7 +522,9 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         _addReference: function(model) {
             this._index[model.cid] = model;
             var id = this.modelId(model);
-            if (id != null) this._index[id] = model;
+            if (angular.isDefined(id) && id !== null) {
+				this._index[id] = model;
+			}
         },
 
         /**
@@ -521,7 +534,9 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
         _removeReference: function(model) {
             delete this._index[model.cid];
             var id = this.modelId(model);
-            if (id != null) delete this._index[id];
+			if (angular.isDefined(id) && id !== null) {
+				delete this._index[id];
+			}
         }
         
     };

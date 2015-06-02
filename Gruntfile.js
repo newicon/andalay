@@ -39,11 +39,21 @@ module.exports = function (grunt) {
 				background: true
 			}
 		},
+		doxx: {
+			all: {
+				src: 'src',
+				target: 'docs',
+				options: {
+					template: 'template.jade'
+				}
+			}
+		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-doxx');
 
 	grunt.registerTask('test', ['karma:unit']);
 	grunt.registerTask('build', [
@@ -51,6 +61,5 @@ module.exports = function (grunt) {
 		'karma:unit',
 		'uglify:main'
 	]);
-
-	grunt.registerTask('default', ['karma:watch', 'watch']);
+	grunt.registerTask('default', ['karma:watch', 'watch', 'doxx']);
 };
