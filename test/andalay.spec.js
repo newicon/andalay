@@ -312,6 +312,28 @@ describe('Andalay:', function(){
 			$httpBackend.expectGET('/outcome/nocontact').respond(200,resetModelData());
 			$httpBackend.flush();
         });
+
+        it('should delete a single model from the server', function(){
+        	outcomeModel = new OutcomeModel(resetModelData());
+        	outcomeModel.delete().then(function(response) {
+        		expect(outcomeModel.id).toBe(null);
+        	});
+			$httpBackend.expectDELETE('/outcome/nocontact').respond(203);
+			$httpBackend.flush();
+        });
+
+        it('should delete a model from the server and remove that model from its collection', function(){
+        	outcomeCollection = new OutcomeCollection();
+        	outcomeModel = new OutcomeModel(resetModelData());
+        	outcomeCollection.addOne(outcomeModel);
+        	expect(outcomeCollection.get('nocontact').label).toBe('No Contact');
+        	outcomeModel.delete().then(function(response) {
+        		expect(outcomeModel.id).toBe(null);
+        		expect(outcomeCollection.get('nocontact')).toBe(void 0);
+        	});
+			$httpBackend.expectDELETE('/outcome/nocontact').respond(203);
+			$httpBackend.flush();
+        });
 	});
 
 	describe('Replicate addOne bug', function() {
@@ -355,8 +377,6 @@ describe('Andalay:', function(){
 		});
 	});
 });
-
-
 
 function resetData(){
 	return [
