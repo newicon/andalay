@@ -34,7 +34,7 @@ A collection represents a collection of Model objects.
 
 Typical useage:
 
-~~~
+~~~js
 // We must specify Andalay as a dependacy on the angular app
 var app = angular.module('myapp', ['Andalay']);
 
@@ -57,43 +57,42 @@ app.service('TodoService', ['Andalay', function(Andalay){
 
 We typically only need to return the collection as we can access to model via the collection.model property.
 
-~~~
+~~~js
 var myNewTodo = new TodoService.model({name:'my new todo'});
 ~~~
 
 To load populate the collection with models we need to fetch them from the server:
 
-~~~
+~~~js
 TodoService.fetch();
 ~~~
 
 The above code will generate a GET /todos request and populate the collection.
 To use this in angular we can do the following:
 
-~~~
+~~~js
 // in angular controller
 $scope.todoService = TodoService;
 $scope.todoService.fetch();
+~~~
 
+~~~html
 // in html
 <div ng-repeat="todo in todoService.models">
 ~~~
 
 The collections model property maintains an array of models
-
-
 Typically Collections and Models map to a rest style URL structures.
 
 ~~~
-GET /todos/	TodoCollection.fetch()
-POST /todos/ TodoCollection.create() 
-GET  /todos/1 ... TodoModel.fetch();
-PUT  /todos/1 ... TodoModel.save();
-DEL  /todos/1 ... TodoModel.destroy();
+GET /todos/	    TodoCollection.fetch()
+POST /todos/    TodoCollection.create() 
+GET  /todos/1   TodoModel.fetch();
+PUT  /todos/1   TodoModel.save();
+DEL  /todos/1   TodoModel.destroy();
 ~~~
 
 However you may not use them in this context always.
-
 As the following code will generate the correct request to create a new Todo Model.
 
 ~~~
