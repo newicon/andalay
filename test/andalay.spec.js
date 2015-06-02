@@ -23,7 +23,7 @@ describe('Andalay:', function(){
 		        definition:{},
 		        another:'hi',
 		    },
-		    url: '/outcome',
+		    urlRoot: '/outcome',
 		    getName: function(){
 		        return this.id + ' ' + this.label;
 		    }
@@ -291,23 +291,18 @@ describe('Andalay:', function(){
         	expect(person.name).toBe('Bob');
         });
 
-   //      it('should save a model to the server, and update the client side model', function(){
-   //      	// This isn't correct - the POST should be mirroring the data,
-   //      	// already defined in the model. Boo urns, rewrite it.
-   //      	outcomeModel = new OutcomeModel({
-			// 	url: '/outcome',
-			// });
-			// outcomeModel.save().then(function() {
-			// 	expect(outcomeModel.name).toBe('Bob');
-			// }, function(err) {
-			// 	console.log('err', err);
-			// });
-			// $httpBackend.expectPOST('/outcome').respond(200,{
-			// 	id: 1,
-			// 	name: 'Bob'
-			// });
-			// $httpBackend.flush();
-   //      });
+        it('should save a model to the server, and update the client side model', function(){
+        	// This isn't correct - the POST should be mirroring the data,
+        	// already defined in the model. Boo urns, rewrite it.
+        	outcomeModel = new OutcomeModel(resetModelData());
+			outcomeModel.save().then(function() {
+				expect(outcomeModel.id).toBe('nocontact');
+			}, function(err) {
+				console.log('err', err);
+			});
+			$httpBackend.expectPUT('/outcome/nocontact').respond(200,resetModelData());
+			$httpBackend.flush();
+        });
 
    //      it('should fetch a single model from the server', function(){
    //      	outcomeModel = new OutcomeModel({id: 1});
