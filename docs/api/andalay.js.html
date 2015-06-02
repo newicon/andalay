@@ -93,6 +93,8 @@
               </li>
               <li><a href="#parse"><i class="alert alert-info"></i><span>parse</span></a>
               </li>
+              <li><a href="#url"><i class="alert alert-info"></i><span>url</span></a>
+              </li>
               <li><a href="#save"><i class="alert alert-info"></i><span>save</span></a>
               </li>
               <li><a href="#setSaving"><i class="alert alert-info"></i><span>setSaving</span></a>
@@ -343,9 +345,16 @@ isNew: function() {
 
 isValid: function() {
 	return this.validate();
-},
-
-url: function() {
+},</code></pre>
+          <section id="url">
+            <h1>url</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.url()</span>
+            </p>
+          </section>
+          <div class="description"><p>You can override this function to provide the url for this model resource</p> </div>
+          <pre><code class="language-javascript">url: function() {
 	var base =
 	  _.result(this, 'urlRoot') ||
 	  _.result(this.collection, 'url') ||
@@ -1075,7 +1084,7 @@ sync: function() {
               <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._prepareModel()</span>
             </p>
           </section>
-          <div class="description"><p>Prepare a hash of attributes (or other model) to be added to this<br />collection.</p> </div>
+          <div class="description"><p>Prepare a hash of attributes (or other model) to be added to this<br />collection</p> </div>
           <pre><code class="language-javascript">_prepareModel: function(object) {
     var model = object;
     if (object instanceof Andalay.Model) {
@@ -1097,7 +1106,9 @@ sync: function() {
           <pre><code class="language-javascript">_addReference: function(model) {
     this._index[model.cid] = model;
     var id = this.modelId(model);
-    if (id != null) this._index[id] = model;
+    if (angular.isDefined(id) &amp;&amp; id !== null) {
+				this._index[id] = model;
+			}
 },</code></pre>
           <section id="_removeReference">
             <h1>_removeReference</h1>
@@ -1110,7 +1121,9 @@ sync: function() {
           <pre><code class="language-javascript">_removeReference: function(model) {
     delete this._index[model.cid];
     var id = this.modelId(model);
-    if (id != null) delete this._index[id];
+			if (angular.isDefined(id) &amp;&amp; id !== null) {
+				delete this._index[id];
+			}
 }
 
     };

@@ -42,7 +42,7 @@ module.exports = function (grunt) {
 		doxx: {
 			all: {
 				src: 'src',
-				target: 'docs',
+				target: 'docs/api',
 				options: {
 					template: 'template.jade'
 				}
