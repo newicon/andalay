@@ -103,11 +103,73 @@
 					<h2><a id="model-constructor" href="#model-extend"></a>Constructor / Initialize</h2>
 					<p>Constructor / Initialize enables</p>
 <pre>
-new Book({
-  title: "One Thousand and One Nights",
-  author: "Scheherazade"
+
+angular.module('myapp')
+.service('TodoService', ['Andalay', function(Andalay){
+
+	var TodoModel = Andalay.Model.extend({});
+
+	var TodoCollection = Andalay.Collection.extend({
+		url: 'todos',
+		model: TodoModel
+	});
+
+	return new TodoCollection([{name:'First todo'}]);
+
+}]);
+
+
+</pre>
+					
+<h2>API Integration</h2>
+
+<p>Adalay is pre-configured to sync with a RESTful API. Simply create a new Collection with the url of your resource endpoint:</p>
+<pre>
+var Books = Backbone.Collection.extend({
+  url: '/books'
 });
 </pre>
+<p>The Collection and Model components together form a direct mapping of REST resources using the following methods:</p>
+<pre>
+GET  /books/ .... collection.fetch();
+POST /books/ .... collection.create();
+GET  /books/1 ... model.fetch();
+PUT  /books/1 ... model.save();
+DEL  /books/1 ... model.destroy();
+</pre>
+<p>
+When fetching raw JSON data from an API, a Collection will automatically populate itself with data formatted as an array, while a Model will automatically populate itself with data formatted as an object:
+</p>
+<pre>
+[{"id": 1}] ..... populates a Collection with one model.
+{"id": 1} ....... populates a Model with one attribute.
+</pre>
+<p>
+However, it's fairly common to encounter APIs that return data in a different format than what Backbone expects. For example, consider fetching a Collection from an API that returns the real data array wrapped in metadata:
+</p>
+<pre>
+{
+  "page": 1,
+  "limit": 10,
+  "total": 2,
+  "books": [
+    {"id": 1, "title": "Pride and Prejudice"},
+    {"id": 4, "title": "The Great Gatsby"}
+  ]
+}
+</pre>
+<p>
+In the above example data, a Collection should populate using the "books" array rather than the root object structure. This difference is easily reconciled using a parse method that returns (or transforms) the desired portion of API data:
+</p>
+<pre>
+var Books = Backbone.Collection.extend({
+  url: '/books',
+  parse: function(data) {
+    return data.books;
+  }
+});
+</pre>					
+					
 
 				</section>
 

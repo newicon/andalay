@@ -166,6 +166,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		}
     };
 	
+	// Add additional relevent underscore methods
 	var modelMethods = ['keys', 'values', 'pairs', 'invert', 'pick', 'omit', 'chain', 'isEmpty'];
     _.each(modelMethods, function(method) {
         if (!_[method]) return;
@@ -527,13 +528,13 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 
     var methods = ['forEach', 'each', 'find', 'filter'];
 
-    // 'each', 'map', 'collect', 'reduce', 'foldl',
+	// Additional relevant underscore functions to add:
+    // 'map', 'collect', 'reduce', 'foldl',
     // 'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select',
     // 'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke',
     // 'max', 'min', 'toArray', 'size', 'first', 'head', 'take', 'initial', 'rest',
     // 'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle',
     // 'lastIndexOf', 'isEmpty', 'chain', 'sample', 'partition'
-
     _.each(methods, function(method) {
         if (!_[method]) return;
         Andalay.Collection.prototype[method] = function() {
@@ -542,15 +543,6 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
             return _[method].apply(_, args);
         };
     });
-	
-	var BackendHttp = {
-		create: function(){
-			//model.url
-		},
-		update: function(){
-			
-		}
-	};
 	
 	Andalay.sync = function(method, model, options) {
 		var methodMap = {
