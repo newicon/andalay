@@ -79,6 +79,7 @@ describe('Andalay:', function(){
 			// the model with id 0 has no label attribute defined,
 			// so it should be populated by the default label attribute in the defaults property
 			expect(outcome.get(0).getName()).toEqual('0 NO LABEL');
+			expect(outcome.get('0').getName()).toEqual('0 NO LABEL');
 			expect(outcome.get('nocontact').getName()).toEqual('nocontact No Contact');
 		})
 

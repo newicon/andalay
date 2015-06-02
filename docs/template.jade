@@ -109,7 +109,7 @@ html
                         |  ->
                         span= symbol.return
 
-            if symbol.hasParams
+            if symbol.hasParams || symbol.tags.length != 0
               table.table.table-bordered.table-striped
                 thead
                   tr
