@@ -18,7 +18,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 
 	/**
 	 * Represents a singular model.
-	 * Typically a collection contains an array of Andalay.Model objects.
+	 * A collection contains an array of Andalay.Model objects.
 	 * 
 	 * ~~~js
 	 * new Andalay.Model({name:'steve'});
@@ -217,11 +217,11 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 			});
 		},
 		
-		// store errors
+		// Store errors
 		_errors:{},
 		
 		/**
-		 * Sets the saving address
+		 * Sets the saving address.
 		 * @param {boolean} isSaving the state to set Model.saving
 		 * @returns void
 		 */
@@ -250,7 +250,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 	 * Represents a collection of Andalay.Model objects.
 	 * Creates a new `Collection`, to contain a specific type of `Model`.
 	 * @param {Array} models Array of objects|models to add to the collection
-	 * @param {Object} options Passing a property of model sets the model property of the collection: `MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})`
+	 * @param {Object} options Passing a `model` property sets the model property of the collection: `MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})`
 	 * @return void
 	 */
 	Andalay.Collection = function(models, options) {
@@ -273,27 +273,27 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		model: Andalay.Model,
 		
 		/**
-		 * `boolean` whether the collection is currently loading
+		 * `boolean` Whether the collection is currently loading.
 		 */
 		loading:false,
 		
 		/**
-		 * `boolean` whether a model within the collection is currently saving
+		 * `boolean` Whether a model within the collection is currently saving.
 		 */
 		saving: false,
 		
 		/**
-		 * `array` Stores the list of models
+		 * `array` Stores the list of models.
 		 */
 		models: [],
 
 		/**
-		 * `object` Stores an indexed array of objects id:object and cid:object
+		 * `object` Stores an indexed array of objects id:object and cid:object.
 		 */
 		_index:{},
 
 		/**
-		 * `int` Mirrors the length of the models array
+		 * `int` Mirrors the length of the models array.
 		 */
 		length: 0,
 		
@@ -317,7 +317,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		/**
 		 * Add a Model to the collection. If the model already exists in the collection, extend it.
 		 * @param {object} obj An object or a Model
-		 * @param {object} options Options object. `options.at` (int) specify the position to add the model in the collection
+		 * @param {object} options Options object. `options.at` (int) specifies the position to add the model in the collection
 		 * @return {object} The added object as an instance of the Model
 		 */
 		addOne: function(obj, options) {
@@ -533,7 +533,7 @@ angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$p
 		/**
 		 * Fetch the default set of models for this collection from the server,
 		 * resetting the collection when they arrive. If `reset: true` is passed, 
-		 * the response data will be passed through the reset method instead of set.
+		 * the response data will be passed through the reset() method instead of set().
 		 * @param {object} options Options object
 		 * @returns {object} Promise object
 		 */

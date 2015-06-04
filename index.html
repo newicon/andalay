@@ -73,13 +73,13 @@
 <p>A data layer modelled on Backbone collection and models. For use with Angular JS.</p><h2>Website</h2>
 <p><a href="http://andalayjs.com">http://andalayjs.com</a></p><h2>Goals</h2>
 <ul>
-<li>Form a data layer that syncs with a backend (default basic restful)</li>
-<li>Creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection and if not found would then ask the server.</li>
-<li>Makes working with collections of models easier</li>
-<li>Enables active record style objects. Each item in the collection is in fact a model that can have convenience functions</li>
-<li>Make it easy to locally search through collections and models</li>
+<li>Form a data layer that syncs with a backend (default: a basic RESTful interface)</li>
+<li>Creates a local object cache, reducing server load. For example, a collection.find(123) request would first search the local objects in the collection, and if not found would then ask the server.</li>
+<li>Makes working with collections of models easier.</li>
+<li>Enables ActiveRecord style objects. Each item in the collection is in fact a model that can have convenience functions.</li>
+<li>Make it easy to locally search through collections and models.</li>
 </ul>
-<h2>To Develop</h2>
+<h2>To Develop:</h2>
 <ol>
 <li><code>git clone git@bitbucket.org:newicon/angular-andalay.git</code></li>
 <li><code>cd angular-andalay</code></li>
@@ -87,10 +87,10 @@
 </ol>
 <p>To run the tests:</p><ul>
 <li><code>npm test</code> - run through the tests once and exit.</li>
-<li><code>karma start</code> - runs the tests and reruns them when any development file is changed note you will need to install karma <code>npm install karma -g</code></li>
+<li><code>karma start</code> - runs the tests and reruns them when any development file is changed. NB: you will need to install karma, e.g. <code>npm install karma -g</code>.</li>
 </ul>
 <h2>Overview</h2>
-<p>Andalay Has two core objects a Collection and a Model object.<br />A collection represents a collection of Model objects.</p><p>Typical useage:</p><pre><code class="lang-js">// We must specify Andalay as a dependacy on the angular app
+<p>Andalay has two core objects: a Collection and a Model object.<br />A collection represents a collection of Model objects.</p><p>Typical usage:</p><pre><code class="lang-js">// We must specify Andalay as a dependacy on the angular app
 var app = angular.module(&#39;myapp&#39;, [&#39;Andalay&#39;]);
 
 // Andalay forms the core workhorse for many services responsible for interacting with server side and client side data
@@ -111,7 +111,7 @@ app.service(&#39;TodoService&#39;, [&#39;Andalay&#39;, function(Andalay){
 </code></pre>
 <p>We typically only need to return the collection as we can access to model via the collection.model property.</p><pre><code class="lang-js">var myNewTodo = new TodoService.model({name:&#39;my new todo&#39;});
 </code></pre>
-<p>To load populate the collection with models we need to fetch them from the server:</p><pre><code class="lang-js">TodoService.fetch();
+<p>To populate the collection with models we need to fetch them from the server:</p><pre><code class="lang-js">TodoService.fetch();
 </code></pre>
 <p>The above code will generate a GET /todos request and populate the collection.<br />To use this in angular we can do the following:</p><pre><code class="lang-js">// in angular controller
 $scope.todoService = TodoService;
@@ -125,7 +125,7 @@ POST /todos/    TodoCollection.create()
 GET  /todos/1   TodoModel.fetch();
 PUT  /todos/1   TodoModel.save();
 DEL  /todos/1   TodoModel.destroy();
-</code></pre><p>However you may not use them in this context always.<br />As the following code will generate the correct request to create a new Todo Model.</p><pre><code>var myTodo = new TodoModel({name:&#39;My new todo&#39;});
+</code></pre><p>However you may not always use them in this context.<br />The following code will generate the correct request to create a new Todo Model.</p><pre><code>var myTodo = new TodoModel({name:&#39;My new todo&#39;});
 myTodo.save();
 </code></pre><p>The above code would generate a request <code>POST /todos/ {name:&#39;My new todo&#39;}</code><br />It is important to note that Andalay expects the server to return the newly created object.<br />A valid response would be: <code>{&quot;id&quot;:1, &quot;name&quot;:&quot;My new todo&quot;}</code></p><p>The model will now contain an id property and subsequent calls to the save method will generate a PUT request to update the model.</p></section>
         </div>
