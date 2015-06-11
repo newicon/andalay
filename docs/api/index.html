@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width" charset="utf-8">
-    <title>Andalay</title>
+    <title>andalay</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <style>
@@ -53,7 +53,7 @@
   <body data-spy="scroll" data-target=".scrollspy">
     <header id="overview" class="jumbotron subhead">
       <div class="container">
-        <h1>Andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
+        <h1>andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
         <p class="lead"></p>
       </div>
     </header>
@@ -72,7 +72,7 @@
         <div class="col-md-9">
           <section id="Main"><h1>Andalay</h1>
 <p>A data layer modelled on Backbone collection and models. For use with Angular JS.</p><h2>Website</h2>
-<p><a href="http://andalayjs.com">http://andalayjs.com</a></p><h2>Goals</h2>
+<p><a href="http://andalayjs.com">http://andalayjs.com</a><br /><a href="https://github.com/newicon/andalay">https://github.com/newicon/andalay</a></p><p><a href="Development source">http://andalayjs.com/src/andalay.js</a><br /><a href="Production source">http://andalayjs.com/src/andalay.js</a></p><h2>Goals</h2>
 <ul>
 <li>Form a data layer that syncs with a backend (default basic restful)</li>
 <li>Creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection and if not found would then ask the server.</li>
@@ -110,18 +110,20 @@ app.service(&#39;TodoService&#39;, [&#39;Andalay&#39;, function(Andalay){
 
 }]);
 </code></pre>
-<p>We typically only need to return the collection as we can access to model via the collection.model property.</p><pre><code class="lang-js">var myNewTodo = new TodoService.model({name:&#39;my new todo&#39;});
+<p>We typically only need to return the collection from the angular service as we can access the model class via the collection.model property.<br />However Andalay can support multiple model types in one collection. So your service might want to return these as well.</p><pre><code class="lang-js">var myNewTodo = new TodoService.model({name:&#39;my new todo&#39;});
 </code></pre>
-<p>To load populate the collection with models we need to fetch them from the server:</p><pre><code class="lang-js">TodoService.fetch();
+<p>To populate the collection with models we need to fetch them from the server:</p><pre><code class="lang-js">TodoService.fetch();
 </code></pre>
-<p>The above code will generate a GET /todos request and populate the collection.<br />To use this in angular we can do the following:</p><pre><code class="lang-js">// in angular controller
+<p>The above code will generate a GET /todos request and populate the collection.<br />We can alos populate our model with data we already have by using a reset command.</p><pre><code>TodoService.reset([{&quot;name&quot;:&quot;my first model&quot;}, {&quot;name&quot;:&quot;My second model&quot;}]);
+</code></pre><p>We can also do this at initialisation:</p><pre><code>var myNewCollection = new TodoCollection([{&quot;name&quot;:&quot;my first model&quot;}, {&quot;name&quot;:&quot;My second model&quot;}]);
+</code></pre><p>To use this in angular we can do the following:</p><pre><code class="lang-js">// in angular controller
 $scope.todoService = TodoService;
 $scope.todoService.fetch();
 </code></pre>
 <pre><code class="lang-html">// in html
 &lt;div ng-repeat=&quot;todo in todoService.models&quot;&gt;
 </code></pre>
-<p>The collections model property maintains an array of models<br />Typically Collections and Models map to a rest style URL structures.</p><pre><code>GET /todos/        TodoCollection.fetch()
+<p>The collections model property maintains an array of models<br />Typically Collections and Models map to a rest style URL structures.</p><pre><code>GET  /todos/    TodoCollection.fetch()
 POST /todos/    TodoCollection.create() 
 GET  /todos/1   TodoModel.fetch();
 PUT  /todos/1   TodoModel.save();

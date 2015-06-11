@@ -61,5 +61,5 @@ module.exports = function (grunt) {
 		'karma:unit',
 		'uglify:main'
 	]);
-	grunt.registerTask('default', ['karma:watch', 'watch', 'doxx']);
+	grunt.registerTask('default', ['karma:watch', 'watch', 'doxx', 'uglify:main']);
 };

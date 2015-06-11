@@ -7,8 +7,15 @@ A data layer modelled on Backbone collection and models. For use with Angular JS
 [http://andalayjs.com](http://andalayjs.com) 
 [https://github.com/newicon/andalay](https://github.com/newicon/andalay)
 
-[http://andalayjs.com/src/andalay.js](Development source)
-[http://andalayjs.com/src/andalay.js](Production source)
+## Install
+
+- [Development source](http://andalayjs.com/src/andalay.js)
+- [Production source](http://andalayjs.com/dist/andalay.min.js)
+
+Or using package manager:
+
+- ```npm install andalay```
+- ```bower install andalay```
 
 ## Goals
 
@@ -20,15 +27,14 @@ A data layer modelled on Backbone collection and models. For use with Angular JS
 
 ## To Develop
 
-1. ```git clone git@bitbucket.org:newicon/angular-andalay.git```
-2. ```cd angular-andalay```
+1. ```git clone git@bitbucket.org:newicon/andalay.git```
+2. ```cd andalay```
 3. ```npm install```
 
 To run the tests:
 
 - ```npm test``` - run through the tests once and exit.
 - ```karma start``` - runs the tests and reruns them when any development file is changed note you will need to install karma ```npm install karma -g```
-
 
 
 ## Overview ##
