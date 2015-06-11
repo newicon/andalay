@@ -10,7 +10,6 @@ html
     meta(name='viewport', content='width=device-width', charset='utf-8')
     title= title
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css")
     style.
       body > .navbar .brand {
         float:left;
@@ -130,7 +129,8 @@ html
 
             .description !{symbol.description.full} !{symbol.description.extra}
             if symbol.code
-              pre
+              a.codeToggle(href,class='btn btn-default btn-xs') Show source
+              pre.hidden
                 code.language-javascript
                   = symbol.code
             if symbol.jsfiddle
@@ -162,6 +162,11 @@ html
     // App js
     script.
       $(function(){
+        $('.codeToggle').click(function(){
+          $pretag = $(this).next();
+          $pretag.toggleClass('hidden');
+          return false;
+        })
         var $window = $(window);
         $('.scrollspy .nav').affix({
           offset: {

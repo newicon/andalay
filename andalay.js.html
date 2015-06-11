@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>Andalay</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      
+      footer iframe{vertical-align:middle;}
+      
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>Andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="index.html">Main</a></li>
+            <li class="active"><a href="andalay.js.html">andalay.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#Model"><i class="alert alert-success"></i><span>Model</span></a>
+              </li>
+              <li><a href="#Andalay.Model"><i class="alert alert-success"></i><span>Andalay.Model</span></a>
+              </li>
+              <li><a href="#idAttribute"><i class="alert alert-success"></i><span>idAttribute</span></a>
+              </li>
+              <li><a href="#loading"><i class="alert alert-success"></i><span>loading</span></a>
+              </li>
+              <li><a href="#saving"><i class="alert alert-success"></i><span>saving</span></a>
+              </li>
+              <li><a href="#defaults"><i class="alert alert-success"></i><span>defaults</span></a>
+              </li>
+              <li><a href="#initialize"><i class="alert alert-info"></i><span>initialize</span></a>
+              </li>
+              <li><a href="#toJSON"><i class="alert alert-info"></i><span>toJSON</span></a>
+              </li>
+              <li><a href="#has"><i class="alert alert-info"></i><span>has</span></a>
+              </li>
+              <li><a href="#parse"><i class="alert alert-info"></i><span>parse</span></a>
+              </li>
+              <li><a href="#isNew"><i class="alert alert-info"></i><span>isNew</span></a>
+              </li>
+              <li><a href="#isValid"><i class="alert alert-info"></i><span>isValid</span></a>
+              </li>
+              <li><a href="#url"><i class="alert alert-info"></i><span>url</span></a>
+              </li>
+              <li><a href="#validate"><i class="alert alert-info"></i><span>validate</span></a>
+              </li>
+              <li><a href="#sync"><i class="alert alert-info"></i><span>sync</span></a>
+              </li>
+              <li><a href="#fetch"><i class="alert alert-info"></i><span>fetch</span></a>
+              </li>
+              <li><a href="#save"><i class="alert alert-info"></i><span>save</span></a>
+              </li>
+              <li><a href="#delete"><i class="alert alert-info"></i><span>delete</span></a>
+              </li>
+              <li><a href="#setSaving"><i class="alert alert-info"></i><span>setSaving</span></a>
+              </li>
+              <li><a href="#Collection"><i class="alert alert-info"></i><span>Collection</span></a>
+              </li>
+              <li><a href="#Andalay.Collection"><i class="alert alert-success"></i><span>Andalay.Collection</span></a>
+              </li>
+              <li><a href="#model"><i class="alert alert-success"></i><span>model</span></a>
+              </li>
+              <li><a href="#loading"><i class="alert alert-success"></i><span>loading</span></a>
+              </li>
+              <li><a href="#saving"><i class="alert alert-success"></i><span>saving</span></a>
+              </li>
+              <li><a href="#models"><i class="alert alert-success"></i><span>models</span></a>
+              </li>
+              <li><a href="#_index"><i class="alert alert-success"></i><span>_index</span></a>
+              </li>
+              <li><a href="#length"><i class="alert alert-success"></i><span>length</span></a>
+              </li>
+              <li><a href="#initialize"><i class="alert alert-info"></i><span>initialize</span></a>
+              </li>
+              <li><a href="#toJSON"><i class="alert alert-info"></i><span>toJSON</span></a>
+              </li>
+              <li><a href="#addOne"><i class="alert alert-info"></i><span>addOne</span></a>
+              </li>
+              <li><a href="#parse"><i class="alert alert-info"></i><span>parse</span></a>
+              </li>
+              <li><a href="#addMany"><i class="alert alert-info"></i><span>addMany</span></a>
+              </li>
+              <li><a href="#updateMany"><i class="alert alert-info"></i><span>updateMany</span></a>
+              </li>
+              <li><a href="#reset"><i class="alert alert-info"></i><span>reset</span></a>
+              </li>
+              <li><a href="#get"><i class="alert alert-info"></i><span>get</span></a>
+              </li>
+              <li><a href="#exists"><i class="alert alert-info"></i><span>exists</span></a>
+              </li>
+              <li><a href="#update"><i class="alert alert-info"></i><span>update</span></a>
+              </li>
+              <li><a href="#remove"><i class="alert alert-info"></i><span>remove</span></a>
+              </li>
+              <li><a href="#removeAll"><i class="alert alert-info"></i><span>removeAll</span></a>
+              </li>
+              <li><a href="#modelId"><i class="alert alert-info"></i><span>modelId</span></a>
+              </li>
+              <li><a href="#last"><i class="alert alert-info"></i><span>last</span></a>
+              </li>
+              <li><a href="#at"><i class="alert alert-info"></i><span>at</span></a>
+              </li>
+              <li><a href="#size"><i class="alert alert-info"></i><span>size</span></a>
+              </li>
+              <li><a href="#all"><i class="alert alert-info"></i><span>all</span></a>
+              </li>
+              <li><a href="#where"><i class="alert alert-info"></i><span>where</span></a>
+              </li>
+              <li><a href="#findWhere"><i class="alert alert-info"></i><span>findWhere</span></a>
+              </li>
+              <li><a href="#sync"><i class="alert alert-info"></i><span>sync</span></a>
+              </li>
+              <li><a href="#fetch"><i class="alert alert-info"></i><span>fetch</span></a>
+              </li>
+              <li><a href="#_reset"><i class="alert alert-info"></i><span>_reset</span></a>
+              </li>
+              <li><a href="#_prepareModel"><i class="alert alert-info"></i><span>_prepareModel</span></a>
+              </li>
+              <li><a href="#_addReference"><i class="alert alert-info"></i><span>_addReference</span></a>
+              </li>
+              <li><a href="#_removeReference"><i class="alert alert-info"></i><span>_removeReference</span></a>
+              </li>
+              <li><a href="#sync"><i class="alert alert-info"></i><span>sync</span></a>
+              </li>
+              <li><a href="#extend"><i class="alert alert-info"></i><span>extend</span></a>
+              </li>
+              <li><a href="#extend"><i class="alert alert-success"></i><span>extend</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@property</td>
+                <td>object</td>
+                <td><p>Andalay Model</p></td>
+              </tr>
+              <tr>
+                <td>@property</td>
+                <td>object</td>
+                <td><p>Andalay Collection</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Andalay</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><h1>Angular Andalay.</h1>
+<h4>In a nutshell: Backbone-esc Models for Angular.</h4>
+<p>Andalay is essentially a fork of Backbone, with a few key differences.<br />1: No attributes array.  The attributes are the model properties.<br />2: No events raised. Angular&#39;s two way data binding takes care of watching for data changes.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">angular.module('Andalay', ['underscore']).factory('Andalay', ['$http', '$q', '$parse', '_',
+	function($http ,  $q ,  $parse, _) {
+	'use strict';
+
+	var Andalay = {};</code></pre>
+          <section id="Model">
+            <h1>Model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">constructor</div><span>Andalay.Model()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>Object</td>
+                <td><p>Initialize the record with these properties</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td><p>Options object</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td></td>
+                <td><p>void</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Represents a singular model.<br />Typically a collection contains an array of Andalay.Model objects.</p><pre><code class="lang-js">new Andalay.Model({name:&#39;steve&#39;});
+</code></pre>
+ </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model = function(attributes, options) {
+	// extend the model with default properties, override defaults if specified in attributes
+	var attrs = attributes || {};
+	options = options || {};
+	// give the model an autogenerated client id
+	this.cid = _.uniqueId('c');
+	if (options.parse) attrs = this.parse(attrs, options) || {};
+	attrs = _.defaults({}, attrs, angular.copy(_.result(this, 'defaults')));
+	if (attrs) {
+		angular.extend(this, attrs);
+	}
+	this.initialize.apply(this, arguments);
+};</code></pre>
+          <section id="Andalay.Model">
+            <h1>Andalay.Model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">prototype</div><span>Andalay.Model.prototype</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td></td>
+                <td><p>void</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Define the Model&#39;s inheritable methods.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model.prototype = {</code></pre>
+          <section id="idAttribute">
+            <h1>idAttribute</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.idAttribute</span>
+            </p>
+          </section>
+          <div class="description"><p><code>string</code> Stores the name of the attribute (property) that the id value is stored in.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">idAttribute: 'id',</code></pre>
+          <section id="loading">
+            <h1>loading</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.loading</span>
+            </p>
+          </section>
+          <div class="description"><p><code>boolean</code> whether the model is currently loading.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">loading: false,</code></pre>
+          <section id="saving">
+            <h1>saving</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.saving</span>
+            </p>
+          </section>
+          <div class="description"><p><code>boolean</code> whether the model is currently saving.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">saving: false,</code></pre>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.defaults</span>
+            </p>
+          </section>
+          <div class="description"><p><code>object</code> define default attributes to set on this model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">defaults: {},</code></pre>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.initialize()</span>
+            </p>
+          </section>
+          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">initialize: function() {},</code></pre>
+          <section id="toJSON">
+            <h1>toJSON</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.toJSON()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Object consumable by JSON.stringify();</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns an object that can be json-ified.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">toJSON: function() {
+	var json = angular.copy(this);
+	delete json.collection;
+	delete json.cid;
+	return json;
+},</code></pre>
+          <section id="has">
+            <h1>has</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.has()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>property</td>
+                <td>string</td>
+                <td><p>name</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Whether the model has a specified property.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">has: function(property){
+	return angular.isDefined(this[property]);
+},</code></pre>
+          <section id="parse">
+            <h1>parse</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.parse()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>response</td>
+                <td>object</td>
+                <td><p>The response from the server</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>The (altered) response</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">parse: function(response, options) {
+	return response;
+},</code></pre>
+          <section id="isNew">
+            <h1>isNew</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.isNew()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>boolean</td>
+                <td><p>Is the object new?</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>A model without an id attribute is considered to be new.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">isNew: function() {
+	return !this.has(this.idAttribute);
+},</code></pre>
+          <section id="isValid">
+            <h1>isValid</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.isValid()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>boolean</td>
+                <td><p>The result of validate()</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return the result of the model&#39;s validation function.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">isValid: function() {
+	return this.validate();
+},</code></pre>
+          <section id="url">
+            <h1>url</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.url()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>string</td>
+                <td><p>the url for the model resource</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>You can override this function to provide the url for this model resource.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">url: function() {
+	var base =
+	  _.result(this, 'urlRoot') ||
+	  _.result(this.collection, 'url') ||
+	  urlError();
+	if (this.isNew()) return base;
+	var id = this.id || this[this.idAttribute];
+	return base.replace(/([^\/])$/, '$1/') + encodeURIComponent(id);
+},</code></pre>
+          <section id="validate">
+            <h1>validate</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.validate()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>boolean</td>
+                <td><p>The result of the validation rules. Defaults to <code>true</code></p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Override this function to provide custom validation rules.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">validate: function() {
+	return true;
+},</code></pre>
+          <section id="sync">
+            <h1>sync</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.sync()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Promise object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>A proxy to Andalay.sync().</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">sync: function() {
+	return Andalay.sync.apply(this, arguments);
+},</code></pre>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.fetch()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>options</td>
+                <td>type</td>
+                <td><p>Options object. If <code>parse</code> is set to false, the server response is not run through model.parse()</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Fetch the model with its ID.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">fetch: function (options) {
+	options = options ? _.clone(options) : {};
+	if (options.parse === void 0) {
+		options.parse = true;
+	}
+	var model = this;
+	model.loading = true;
+	return this.sync('read', this, options).then(function(response){
+		model.loading = false;
+		var data = options.parse ? model.parse(response.data) : response.data;
+		angular.extend(model, data);
+	}, function(err){
+		throw new Error('Error retrieving model');
+	});
+},</code></pre>
+          <section id="save">
+            <h1>save</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.save()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Options</td>
+                <td>object</td>
+                <td><p>object. <code>validate: false</code> prevents validation and forces save; defaults to true</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Promise object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Saves the current model to the backend.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">save: function(options){
+	var method = this.isNew() ? 'create' : 'update';
+	options = _.defaults((options || {}), {validate:true});
+	this.setSaving(true);
+	var deferred = $q.defer();
+	if (options.validate &amp;&amp; !this.validate()) {
+		deferred.reject('Validation failed');
+	}
+	var model = this;
+	return this.sync(method, this, options).then(function(response) {
+		// Success
+		model.setSaving(false);
+		angular.extend(model, model.parse(response.data));
+		deferred.resolve(response);
+	}, function(response){
+		// Error, assumes if request fails the returned data is an array of errors.
+		// In the format [{attribute:['error message']}]
+		model._errors = response.data;
+		deferred.reject(response);
+	});
+},</code></pre>
+          <section id="delete">
+            <h1>delete</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.delete()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Promise object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Delete the model on the server, and remove it from its parent collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">delete: function() {
+	var model = this;
+	model.loading = true;
+	return this.sync('delete', this).then(function(response){
+		model.loading = false;
+		if (angular.isDefined(model.collection)) {
+			model.collection.remove(model.id);
+		}
+		model[model.idAttribute] = null;
+	}, function(err){
+		throw new Error('Error deleting model');
+	});
+},
+
+// store errors
+_errors:{},</code></pre>
+          <section id="setSaving">
+            <h1>setSaving</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Model.prototype.setSaving()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>isSaving</td>
+                <td>boolean</td>
+                <td><p>the state to set Model.saving</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Sets the saving address</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">setSaving: function(isSaving) {
+	this.saving = isSaving;
+	if (this.collection) {
+		this.collection.saving = isSaving;
+	}
+}
+	};
+	
+	// Add additional relevent underscore methods to the Model.
+	var modelMethods = ['keys', 'values', 'pairs', 'invert', 'pick', 'omit', 'chain', 'isEmpty'];
+	_.each(modelMethods, function(method) {
+if (!_[method]) return;
+Andalay.Model.prototype[method] = function() {
+	var args = [].slice.call(arguments);
+	args.unshift(this);
+	return _[method].apply(_, args);
+};
+	});</code></pre>
+          <section id="Collection">
+            <h1>Collection</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>models</td>
+                <td>Array</td>
+                <td><p>Array of objects|models to add to the collection</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td><p>Passing a property of model sets the model property of the collection: <code>MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})</code></p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td></td>
+                <td><p>void</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><h2>Andalay.Collection</h2>
+<p>Represents a collection of Andalay.Model objects.<br />Creates a new <code>Collection</code>, to contain a specific type of <code>Model</code>.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Collection = function(models, options) {
+	options = options || {};
+	if (options.model) this.model = options.model;
+	this._reset();
+	this.initialize.apply(this, arguments);
+	if (models) this.reset(models);
+};</code></pre>
+          <section id="Andalay.Collection">
+            <h1>Andalay.Collection</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">prototype</div><span>Andalay.Collection.prototype</span>
+            </p>
+          </section>
+          <div class="description"><p>Define the collection&#39;s inheritable methods.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Collection.prototype = {</code></pre>
+          <section id="model">
+            <h1>model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.model</span>
+            </p>
+          </section>
+          <div class="description"><p><code>object</code> The default model for a collection is just a <strong>Backbone.Model</strong>.<br />This should be overridden in most cases.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">model: Andalay.Model,</code></pre>
+          <section id="loading">
+            <h1>loading</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.loading</span>
+            </p>
+          </section>
+          <div class="description"><p><code>boolean</code> whether the collection is currently loading</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">loading:false,</code></pre>
+          <section id="saving">
+            <h1>saving</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.saving</span>
+            </p>
+          </section>
+          <div class="description"><p><code>boolean</code> whether a model within the collection is currently saving</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">saving: false,</code></pre>
+          <section id="models">
+            <h1>models</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.models</span>
+            </p>
+          </section>
+          <div class="description"><p><code>array</code> Stores the list of models</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">models: [],</code></pre>
+          <section id="_index">
+            <h1>_index</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection._index</span>
+            </p>
+          </section>
+          <div class="description"><p><code>object</code> Stores an indexed array of objects id:object and cid:object</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_index:{},</code></pre>
+          <section id="length">
+            <h1>length</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.length</span>
+            </p>
+          </section>
+          <div class="description"><p><code>int</code> Mirrors the length of the models array</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">length: 0,</code></pre>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.initialize()</span>
+            </p>
+          </section>
+          <div class="description"><p>Initialize is an empty function by default. Override it with your own initialization logic.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">initialize: function(properties, options) {},</code></pre>
+          <section id="toJSON">
+            <h1>toJSON</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.toJSON()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Object consumable by JSON.stringify();</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns an object that can be json-ified.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">toJSON: function() {
+	var json = [];
+	this.forEach(function(model, index) {
+		json.push(model.toJSON());
+	});
+	return json;
+},</code></pre>
+          <section id="addOne">
+            <h1>addOne</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.addOne()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>obj</td>
+                <td>object</td>
+                <td><p>An object or a Model</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td><p>Options object. <code>options.at</code> (int) specify the position to add the model in the collection</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>The added object as an instance of the Model</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add a Model to the collection. If the model already exists in the collection, extend it.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">addOne: function(obj, options) {
+	var id, existing, index;
+	options = options || {};
+	if (_.isArray(obj))
+		throw new Error('The object to add must be an object. Array given');
+	if (!_.isObject(obj)){
+		throw new Error('Cannot add &quot;' + obj + '&quot; to the collection. You must specify an object to add');
+	}
+	index = (options.at !== void 0) ? options.at : this.models.length;
+	var model = this.get(obj);
+	if (this.exists(obj)) {
+		// already exists in the collection so extend it.
+		angular.extend(model, obj);
+	} else {
+		// add a new one
+		model = this._prepareModel(obj);
+		this._addReference(model);
+		// add the model to the models array
+		this.models.splice(index, 0, model);
+		this.length += 1;
+	}
+	return model;
+},</code></pre>
+          <section id="parse">
+            <h1>parse</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.parse()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>response</td>
+                <td>object</td>
+                <td><p>The response from the server</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td><p>Options object</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>The (altered) response object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Parse converts a response into the hash of attributes to be set on the model.<br />The default implementation passes the response along.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">parse: function(response, options) {
+	return response;
+},</code></pre>
+          <section id="addMany">
+            <h1>addMany</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.addMany()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>models</td>
+                <td>array</td>
+                <td><p>Array of objects to add</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>array</td>
+                <td><p>An array of added or prexisting models</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Add an array of objects to the collection.<br />It will merge if the object already exists and add if it does not.<br />For example:</p><pre><code class="lang-js">var myCollection = Collection.addMany([{name:&#39;test object&#39;},{name:&#39;another test object&#39;}])
+</code></pre>
+ </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">addMany: function(models) {
+	if (!_.isArray(models)) {
+		throw new Error('Cannot add ' + models + ', models must be an array of objects');
+	}
+	var added = [];
+	for (var i = 0; i &lt; models.length; i++) {
+		var obj = models[i];
+		added.push(this.addOne(obj));
+	}
+	return added;
+},</code></pre>
+          <section id="updateMany">
+            <h1>updateMany</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.updateMany()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Array</td>
+                <td>object</td>
+                <td><p>of objects to add</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>array</td>
+                <td><p>An array of added or prexisting models</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Proxy to addMany.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">updateMany: function(models) {
+	return this.addMany(models);
+},</code></pre>
+          <section id="reset">
+            <h1>reset</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.reset()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Array</td>
+                <td>array</td>
+                <td><p>of objects to add</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>array</td>
+                <td><p>Array of models that the collection has been reset to</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>When you have more items than you want to add or remove individually,<br />you can reset the entire set with a new list of models.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">reset: function (models) {
+	this._reset();
+	if (models)
+		return this.addMany(models);
+	return [];
+},</code></pre>
+          <section id="get">
+            <h1>get</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.get()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>obj</td>
+                <td>mixed</td>
+                <td><p>Pass in the id, the cid or an object. If passed an object it will attempt to get the id from the objects property specified by the model.idAttribute</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>mixed</td>
+                <td><p>Andalay.Model | undefined</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get a model from the collection by id.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">get: function(obj) {
+	// Must specify a valid object or id.
+	// Allow ids of value 0.
+	if (!obj &amp;&amp; obj !== 0) return void 0;
+	return this._index[obj] || this._index[this.modelId(obj)] || this._index[obj.cid];
+},</code></pre>
+          <section id="exists">
+            <h1>exists</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.exists()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>obj</td>
+                <td>mixed</td>
+                <td><p>Pass in the id, the cid or an object.</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>boolean</td>
+                <td><p>True if a model exists</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns whether a model exists in the collection with the id.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">exists: function(id) {
+	return !angular.isUndefined(this.get(id));
+},</code></pre>
+          <section id="update">
+            <h1>update</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.update()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>obj</td>
+                <td>object</td>
+                <td><p>An object or a Model</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>The added object as an instance of the Model</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Update a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">update: function(model) {
+	return this.addOne(model);
+},</code></pre>
+          <section id="remove">
+            <h1>remove</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.remove()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pass</td>
+                <td>mixed</td>
+                <td><p>in the id, the cid or an object.</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>mixed</td>
+                <td><p>The removed model, or <code>undefined</code> if no model found to remove.</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Remove a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">remove: function(id) {
+	var model = this.get(id);
+	if (_.isUndefined(model)) {
+		return void 0;
+	}
+	this._removeReference(model);
+	var index = _.indexOf(this.models, model);
+	this.models.splice(index, 1);
+	this.length--;
+	return model;
+},</code></pre>
+          <section id="removeAll">
+            <h1>removeAll</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.removeAll()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>this</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Removes all models from the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">removeAll: function() {
+	this.reset();
+	return this;
+},</code></pre>
+          <section id="modelId">
+            <h1>modelId</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.modelId()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>object</td>
+                <td>object</td>
+                <td><p>Model</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>mixed</td>
+                <td><p>string | interger</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns the id value of the passed in Model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">modelId: function (object) {
+	return object[this.model.prototype.idAttribute || 'id'];
+},</code></pre>
+          <section id="last">
+            <h1>last</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.last()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Model</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Gets the last model in the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">last: function() {
+	return this.models[this.length-1];
+},</code></pre>
+          <section id="at">
+            <h1>at</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.at()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>index</td>
+                <td>int</td>
+                <td><p>position of the Model</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Model</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns the model at the specified position in the array.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">at: function(index) {
+	return this.models[index];
+},</code></pre>
+          <section id="size">
+            <h1>size</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.size()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>int</td>
+                <td><p>Size of the collection</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Returns the size of the collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">size: function() {
+	return this.models.length;
+},</code></pre>
+          <section id="all">
+            <h1>all</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.all()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>Array</td>
+                <td><p>Array of models</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Get all models in the collection as array.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">all: function() {
+	return this.models;
+},</code></pre>
+          <section id="where">
+            <h1>where</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.where()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attrs</td>
+                <td>object</td>
+                <td><p>Object with attributes to match</p></td>
+              </tr>
+              <tr>
+                <td>first</td>
+                <td>boolean</td>
+                <td><p>If true, returns the first model it matches</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return models with matching attributes. Useful for simple cases of filter.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">where: function (attrs, first) {
+	var matches = _.matches(attrs);
+	return this[first ? 'find' : 'filter'](function (model) {
+		return matches(model);
+	});
+},</code></pre>
+          <section id="findWhere">
+            <h1>findWhere</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.findWhere()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attrs</td>
+                <td>object</td>
+                <td><p>Object with attributes to match</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Return the first model with matching attributes. Useful for simple cases of find.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">findWhere: function (attrs) {
+	return this.where(attrs, true);
+},</code></pre>
+          <section id="sync">
+            <h1>sync</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.sync()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Promise object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>A proxy to Andalay.sync().</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">sync: function() {
+	return Andalay.sync.apply(this, arguments);
+},</code></pre>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype.fetch()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td><p>Options object</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Fetch the default set of models for this collection from the server,<br />resetting the collection when they arrive. If <code>reset: true</code> is passed,<br />the response data will be passed through the reset method instead of set.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">fetch: function (options) {
+	options = options ? _.clone(options) : {};
+	if (options.parse === void 0) {
+		options.parse = true;
+	}
+	var collection = this;
+	collection.loading = true;
+	return this.sync('read', this, options).then(function(response){
+		collection.loading = false;
+		var data = options.parse ? collection.parse(response.data) : response.data;
+		collection.addMany(data);
+	}, function(){
+		// error
+	});
+},</code></pre>
+          <section id="_reset">
+            <h1>_reset</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._reset()</span>
+            </p>
+          </section>
+          <div class="description"><p>Private method to reset all internal state. Called when the collection<br />is first initialized or reset.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_reset: function() {
+	this.length = 0;
+	this.models = [];
+	this._index = {};
+},</code></pre>
+          <section id="_prepareModel">
+            <h1>_prepareModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._prepareModel()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>object</td>
+                <td>object</td>
+                <td><p>The would-be model.</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>A bona fide model.</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Prepare a hash of attributes (or other model) to be added to this<br />collection.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_prepareModel: function(object) {
+	var model = object;
+	if (object instanceof Andalay.Model) {
+		model = object;
+	} else {
+		model = new this.model(object);
+	}
+	model.collection = this;
+	return model;
+},</code></pre>
+          <section id="_addReference">
+            <h1>_addReference</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._addReference()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>model</td>
+                <td>object</td>
+                <td><p>Model</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td></td>
+                <td><p>void</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Adds the model to the internal index (idIndex).<br />This essentially makes the collection aware of the model,<br />as it uses this index to search for models both by its autogenerated<br />client id and by its idAttribute if it exists and is not null.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_addReference: function(model) {
+	this._index[model.cid] = model;
+	var id = this.modelId(model);
+	if (angular.isDefined(id) &amp;&amp; id !== null) {
+		this._index[id] = model;
+	}
+},</code></pre>
+          <section id="_removeReference">
+            <h1>_removeReference</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.Collection.prototype._removeReference()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>return</td>
+                <td></td>
+                <td><p>void</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Removes all internal references to a model.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">_removeReference: function(model) {
+	delete this._index[model.cid];
+	var id = this.modelId(model);
+	if (angular.isDefined(id) &amp;&amp; id !== null) {
+		delete this._index[id];
+	}
+}
+
+	};
+
+	var methods = ['forEach', 'each', 'find', 'filter'];
+
+	// Additional relevant underscore functions to add:
+	// 'map', 'collect', 'reduce', 'foldl',
+	// 'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select',
+	// 'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke',
+	// 'max', 'min', 'toArray', 'size', 'first', 'head', 'take', 'initial', 'rest',
+	// 'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle',
+	// 'lastIndexOf', 'isEmpty', 'chain', 'sample', 'partition'
+	_.each(methods, function(method) {
+if (!_[method]) return;
+Andalay.Collection.prototype[method] = function() {
+	var args = [].slice.call(arguments);
+	args.unshift(this.models);
+	return _[method].apply(_, args);
+};
+	});</code></pre>
+          <section id="sync">
+            <h1>sync</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>Andalay.sync()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>method</td>
+                <td>string</td>
+                <td><p>The method to use</p></td>
+              </tr>
+              <tr>
+                <td>model</td>
+                <td>object</td>
+                <td><p>The model to persist</p></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td><p>Options object. Pass in <code>url</code> or <code>data</code> to override. Additional options are passed to the $http service</p></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>object</td>
+                <td><p>Promise generated by $http</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>The point at which Andalay interacts with the $http service to persist model data.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.sync = function(method, model, options) {
+	var methodMap = {
+		'create': 'POST',
+		'update': 'PUT',
+		'patch': 'PATCH',
+		'delete': 'DELETE',
+		'read': 'GET'
+	};
+	options = options || {};
+	var params = {method: methodMap[method]};
+	// Ensure that we have a URL.
+	if (angular.isUndefined(options.url)) {
+		params.url = _.result(model, 'url') || urlError();
+	}
+	if (_.isUndefined(options.data) &amp;&amp; model &amp;&amp; (method === 'create' || method === 'update' || method === 'patch')) {
+		params.data = model.toJSON();
+	}
+	var httpOptions = angular.extend(params, options);
+	model.saving = true;
+	return $http(httpOptions);
+};</code></pre>
+          <section id="extend">
+            <h1>extend</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">function</div><span>extend()</span>
+            </p>
+          </section>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>protoProps</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>staticProps</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>return</td>
+                <td>function</td>
+                <td><p>Constructor function</p></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="description"><p>Create a subclass.<br />Shamelessly pinched from backbone.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">var extend = function(protoProps, staticProps) {
+	var parent = this;
+	var child;
+	if (protoProps &amp;&amp; _.has(protoProps, 'constructor')) {
+		child = protoProps.constructor;
+	} else {
+		child = function(){ return parent.apply(this, arguments); };
+	}
+	// Add static properties to the constructor function, if supplied.
+	_.extend(child, parent, staticProps);
+	// Set the prototype chain to inherit from parent, without calling parent‘s constructor function.
+	var Surrogate = function () { this.$constructor = child; };
+	Surrogate.prototype = parent.prototype;
+	child.prototype = new Surrogate();
+	// Add prototype properties (instance properties) to the subclass, if supplied.
+	if (protoProps) _.extend(child.prototype, protoProps);
+	// Set a convenience property in case the parent’s prototype is needed later.
+	child.__super__ = parent.prototype;
+	return child;
+};
+
+var urlError = function() {
+	throw new Error('A &quot;url&quot; property or function must be specified in the collection. If the model is not added to a collection it should have a urlRoot property');
+};</code></pre>
+          <section id="extend">
+            <h1>extend</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Andalay.Model.extend</span>
+            </p>
+          </section>
+          <div class="description"><p>Add extend function to Objects</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <pre class="hidden"><code class="language-javascript">Andalay.Model.extend = Andalay.Collection.extend = extend;
+
+return Andalay;
+}]);</code></pre>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <footer class="footer">
+      <div class="container">
+        <p>Created by Newicon <a href="https://twitter.com/newicon" data-show-count="false" class="twitter-follow-button"> </a></p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+      
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        $('.codeToggle').click(function(){
+          $pretag = $(this).next();
+          $pretag.toggleClass('hidden');
+          return false;
+        })
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>
