@@ -4,7 +4,11 @@ A data layer modelled on Backbone collection and models. For use with Angular JS
 
 ## Website
 
-[http://andalayjs.com](http://andalayjs.com)
+[http://andalayjs.com](http://andalayjs.com) 
+[https://github.com/newicon/andalay](https://github.com/newicon/andalay)
+
+[http://andalayjs.com/src/andalay.js](Development source)
+[http://andalayjs.com/src/andalay.js](Production source)
 
 ## Goals
 
@@ -55,19 +59,32 @@ app.service('TodoService', ['Andalay', function(Andalay){
 }]);
 ~~~
 
-We typically only need to return the collection as we can access to model via the collection.model property.
+We typically only need to return the collection from the angular service as we can access the model class via the collection.model property.
+However Andalay can support multiple model types in one collection. So your service might want to return these as well.
+
 
 ~~~js
 var myNewTodo = new TodoService.model({name:'my new todo'});
 ~~~
 
-To load populate the collection with models we need to fetch them from the server:
+To populate the collection with models we need to fetch them from the server:
 
 ~~~js
 TodoService.fetch();
 ~~~
 
 The above code will generate a GET /todos request and populate the collection.
+We can alos populate our model with data we already have by using a reset command.
+
+~~~
+TodoService.reset([{"name":"my first model"}, {"name":"My second model"}]);
+~~~
+
+We can also do this at initialisation:
+~~~
+var myNewCollection = new TodoCollection([{"name":"my first model"}, {"name":"My second model"}]);
+~~~
+
 To use this in angular we can do the following:
 
 ~~~js
@@ -85,7 +102,7 @@ The collections model property maintains an array of models
 Typically Collections and Models map to a rest style URL structures.
 
 ~~~
-GET /todos/	    TodoCollection.fetch()
+GET  /todos/    TodoCollection.fetch()
 POST /todos/    TodoCollection.create() 
 GET  /todos/1   TodoModel.fetch();
 PUT  /todos/1   TodoModel.save();
