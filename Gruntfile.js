@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 		watch: {
 			andalay: {
 				files: ['<%= files.src %>', '<%= files.test %>'],
-				tasks: ['jshint:all', 'karma:unit:run']
+				tasks: ['jshint:all', 'karma:unit:watch', 'doxx']
 			}
 		},
 		karma: {
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 			},
 			'watch': {
 				configFile: 'karma.conf.js',
-				background: true
+				background: true,		
 			}
 		},
 		doxx: {

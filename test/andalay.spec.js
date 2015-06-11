@@ -6,7 +6,7 @@ describe('Andalay:', function(){
 	var outcome;
 	var $httpBackend;
 
-	//var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
+	// var $httpBackend, $q, Andalay, OutcomeModel, OutcomeCollection;
 	beforeEach(angular.mock.module('Andalay'));
 
 	beforeEach(inject(function(_$httpBackend_, _$q_, _Andalay_){
@@ -33,7 +33,6 @@ describe('Andalay:', function(){
 		    model: OutcomeModel,
 		    url: '/outcome',
 		});
-
 	}));
 
 	afterEach(function(){
@@ -79,6 +78,7 @@ describe('Andalay:', function(){
 			// the model with id 0 has no label attribute defined,
 			// so it should be populated by the default label attribute in the defaults property
 			expect(outcome.get(0).getName()).toEqual('0 NO LABEL');
+			expect(outcome.get('0').getName()).toEqual('0 NO LABEL');
 			expect(outcome.get('nocontact').getName()).toEqual('nocontact No Contact');
 		})
 

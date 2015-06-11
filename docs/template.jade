@@ -55,17 +55,11 @@ html
       footer iframe{vertical-align:middle;}
 
   body(data-spy="scroll", data-target=".scrollspy")
-    div.navbar.navbar-inverse.navbar-fixed-top
-      div.navbar-inner
-        div.container
-          a.brand Doxx
-          div.nav-collapse.collapse
-            ul.nav.pull-right.sponsored
-
 
     header.jumbotron.subhead#overview
       div.container
         h1= title
+          img(class='pull-right', src='/docs/images/andalayjs-speedy.png', height='100px',width='auto')
         p.lead
 
     .container
@@ -109,7 +103,7 @@ html
                         |  ->
                         span= symbol.return
 
-            if symbol.hasParams
+            if symbol.hasParams || symbol.tags.length != 0
               table.table.table-bordered.table-striped
                 thead
                   tr
@@ -118,6 +112,11 @@ html
                     th Description
                 tbody
                   each tag in symbol.tags
+                    if tag.type == 'property'
+                      tr
+                        td= tag.name
+                        td= tag.types
+                        td!= tag.description 
                     if tag.type == 'param'
                       tr
                         td= tag.name
@@ -138,18 +137,11 @@ html
               h5 jsFiddle
               p
                 iframe(width="100%", height="300", src=symbol.jsfiddle , allowfullscreen="allowfullscreen", frameborder="0")
-
+    hr
     footer.footer
       div.container
-        p Documentation generated with 
-          a(href="https://github.com/FGRibreau/doxx") Doxx 
-          |  created by 
-          a.twitter-follow-button(href='https://twitter.com/FGRibreau',data-show-count='false') Francois-Guillaume Ribreau 
-        p Doxx is sponsored by 
-          a.bringr(href='http://bringr.net/?btt', title="Outil d'analyse des réseaux sociaux") Bringr 
-          |  and 
-          a.redsmin(href='https://redsmin.com/?btt', title="Full Redis GUI") Redsmin
-        p Theme borrowed from Twitter Bootstrap
+        p Created by Newicon 
+          a.twitter-follow-button(href='https://twitter.com/newicon',data-show-count='false') 
 
     script(src="http://platform.twitter.com/widgets.js")
     script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js")
