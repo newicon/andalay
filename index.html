@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width" charset="utf-8">
-    <title>Andalay</title>
+    <title>andalay</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <style>
       body > .navbar .brand {
@@ -52,7 +52,7 @@
   <body data-spy="scroll" data-target=".scrollspy">
     <header id="overview" class="jumbotron subhead">
       <div class="container">
-        <h1>Andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
+        <h1>andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
         <p class="lead"></p>
       </div>
     </header>
@@ -71,26 +71,35 @@
         <div class="col-md-9">
           <section id="Main"><h1>Andalay</h1>
 <p>A data layer modelled on Backbone collection and models. For use with Angular JS.</p><h2>Website</h2>
-<p><a href="http://andalayjs.com">http://andalayjs.com</a></p><h2>Goals</h2>
+<p><a href="http://andalayjs.com">http://andalayjs.com</a><br /><a href="https://github.com/newicon/andalay">https://github.com/newicon/andalay</a></p><h2>Install</h2>
 <ul>
-<li>Form a data layer that syncs with a backend (default: a basic RESTful interface)</li>
-<li>Creates a local object cache, reducing server load. For example, a collection.find(123) request would first search the local objects in the collection, and if not found would then ask the server.</li>
-<li>Makes working with collections of models easier.</li>
-<li>Enables ActiveRecord style objects. Each item in the collection is in fact a model that can have convenience functions.</li>
-<li>Make it easy to locally search through collections and models.</li>
+<li><a href="http://andalayjs.com/src/andalay.js">Development source</a></li>
+<li><a href="http://andalayjs.com/dist/andalay.min.js">Production source</a></li>
 </ul>
-<h2>To Develop:</h2>
+<p>Or using package manager:</p><ul>
+<li><code>npm install andalay</code></li>
+<li><code>bower install andalay</code></li>
+</ul>
+<h2>Goals</h2>
+<ul>
+<li>Form a data layer that syncs with a backend (default basic restful)</li>
+<li>Creates a local object cache reducing server load. For example a collection.find(123) request would first search the local objects in the collection and if not found would then ask the server.</li>
+<li>Makes working with collections of models easier</li>
+<li>Enables active record style objects. Each item in the collection is in fact a model that can have convenience functions</li>
+<li>Make it easy to locally search through collections and models</li>
+</ul>
+<h2>To Develop</h2>
 <ol>
-<li><code>git clone git@bitbucket.org:newicon/angular-andalay.git</code></li>
-<li><code>cd angular-andalay</code></li>
+<li><code>git clone git@bitbucket.org:newicon/andalay.git</code></li>
+<li><code>cd andalay</code></li>
 <li><code>npm install</code></li>
 </ol>
 <p>To run the tests:</p><ul>
 <li><code>npm test</code> - run through the tests once and exit.</li>
-<li><code>karma start</code> - runs the tests and reruns them when any development file is changed. NB: you will need to install karma, e.g. <code>npm install karma -g</code>.</li>
+<li><code>karma start</code> - runs the tests and reruns them when any development file is changed note you will need to install karma <code>npm install karma -g</code></li>
 </ul>
 <h2>Overview</h2>
-<p>Andalay has two core objects: a Collection and a Model object.<br />A collection represents a collection of Model objects.</p><p>Typical usage:</p><pre><code class="lang-js">// We must specify Andalay as a dependacy on the angular app
+<p>Andalay Has two core objects a Collection and a Model object.<br />A collection represents a collection of Model objects.</p><p>Typical useage:</p><pre><code class="lang-js">// We must specify Andalay as a dependacy on the angular app
 var app = angular.module(&#39;myapp&#39;, [&#39;Andalay&#39;]);
 
 // Andalay forms the core workhorse for many services responsible for interacting with server side and client side data
@@ -109,23 +118,25 @@ app.service(&#39;TodoService&#39;, [&#39;Andalay&#39;, function(Andalay){
 
 }]);
 </code></pre>
-<p>We typically only need to return the collection as we can access to model via the collection.model property.</p><pre><code class="lang-js">var myNewTodo = new TodoService.model({name:&#39;my new todo&#39;});
+<p>We typically only need to return the collection from the angular service as we can access the model class via the collection.model property.<br />However Andalay can support multiple model types in one collection. So your service might want to return these as well.</p><pre><code class="lang-js">var myNewTodo = new TodoService.model({name:&#39;my new todo&#39;});
 </code></pre>
 <p>To populate the collection with models we need to fetch them from the server:</p><pre><code class="lang-js">TodoService.fetch();
 </code></pre>
-<p>The above code will generate a GET /todos request and populate the collection.<br />To use this in angular we can do the following:</p><pre><code class="lang-js">// in angular controller
+<p>The above code will generate a GET /todos request and populate the collection.<br />We can alos populate our model with data we already have by using a reset command.</p><pre><code>TodoService.reset([{&quot;name&quot;:&quot;my first model&quot;}, {&quot;name&quot;:&quot;My second model&quot;}]);
+</code></pre><p>We can also do this at initialisation:</p><pre><code>var myNewCollection = new TodoCollection([{&quot;name&quot;:&quot;my first model&quot;}, {&quot;name&quot;:&quot;My second model&quot;}]);
+</code></pre><p>To use this in angular we can do the following:</p><pre><code class="lang-js">// in angular controller
 $scope.todoService = TodoService;
 $scope.todoService.fetch();
 </code></pre>
 <pre><code class="lang-html">// in html
 &lt;div ng-repeat=&quot;todo in todoService.models&quot;&gt;
 </code></pre>
-<p>The collections model property maintains an array of models<br />Typically Collections and Models map to a rest style URL structures.</p><pre><code>GET /todos/        TodoCollection.fetch()
+<p>The collections model property maintains an array of models<br />Typically Collections and Models map to a rest style URL structures.</p><pre><code>GET  /todos/    TodoCollection.fetch()
 POST /todos/    TodoCollection.create() 
 GET  /todos/1   TodoModel.fetch();
 PUT  /todos/1   TodoModel.save();
 DEL  /todos/1   TodoModel.destroy();
-</code></pre><p>However you may not always use them in this context.<br />The following code will generate the correct request to create a new Todo Model.</p><pre><code>var myTodo = new TodoModel({name:&#39;My new todo&#39;});
+</code></pre><p>However you may not use them in this context always.<br />As the following code will generate the correct request to create a new Todo Model.</p><pre><code>var myTodo = new TodoModel({name:&#39;My new todo&#39;});
 myTodo.save();
 </code></pre><p>The above code would generate a request <code>POST /todos/ {name:&#39;My new todo&#39;}</code><br />It is important to note that Andalay expects the server to return the newly created object.<br />A valid response would be: <code>{&quot;id&quot;:1, &quot;name&quot;:&quot;My new todo&quot;}</code></p><p>The model will now contain an id property and subsequent calls to the save method will generate a PUT request to update the model.</p></section>
         </div>

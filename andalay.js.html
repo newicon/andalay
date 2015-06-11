@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width" charset="utf-8">
-    <title>Andalay</title>
+    <title>andalay</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <style>
       body > .navbar .brand {
@@ -52,7 +52,7 @@
   <body data-spy="scroll" data-target=".scrollspy">
     <header id="overview" class="jumbotron subhead">
       <div class="container">
-        <h1>Andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
+        <h1>andalay<img src="/docs/images/andalayjs-speedy.png" height="100px" width="auto" class="pull-right"></h1>
         <p class="lead"></p>
       </div>
     </header>
@@ -246,7 +246,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Represents a singular model.<br />Typically a collection contains an array of Andalay.Model objects.</p><pre><code class="lang-js">new Andalay.Model({name:&#39;steve&#39;});
+          <div class="description"><p>Represents a singular model.<br />A collection contains an array of Andalay.Model objects.</p><pre><code class="lang-js">new Andalay.Model({name:&#39;steve&#39;});
 </code></pre>
  </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">Andalay.Model = function(attributes, options) {
@@ -699,7 +699,7 @@
 	});
 },
 
-// store errors
+// Store errors
 _errors:{},</code></pre>
           <section id="setSaving">
             <h1>setSaving</h1>
@@ -724,7 +724,7 @@ _errors:{},</code></pre>
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Sets the saving address</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p>Sets the saving address.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">setSaving: function(isSaving) {
 	this.saving = isSaving;
 	if (this.collection) {
@@ -767,7 +767,7 @@ Andalay.Model.prototype[method] = function() {
               <tr>
                 <td>options</td>
                 <td>Object</td>
-                <td><p>Passing a property of model sets the model property of the collection: <code>MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})</code></p></td>
+                <td><p>Passing a <code>model</code> property sets the model property of the collection: <code>MyCollection = new Andalay.Collection([{..}], {model:Andalay.Model})</code></p></td>
               </tr>
               <tr>
                 <td>return</td>
@@ -810,7 +810,7 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.loading</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether the collection is currently loading</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p><code>boolean</code> Whether the collection is currently loading.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">loading:false,</code></pre>
           <section id="saving">
             <h1>saving</h1>
@@ -819,7 +819,7 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.saving</span>
             </p>
           </section>
-          <div class="description"><p><code>boolean</code> whether a model within the collection is currently saving</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p><code>boolean</code> Whether a model within the collection is currently saving.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">saving: false,</code></pre>
           <section id="models">
             <h1>models</h1>
@@ -828,7 +828,7 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.models</span>
             </p>
           </section>
-          <div class="description"><p><code>array</code> Stores the list of models</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p><code>array</code> Stores the list of models.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">models: [],</code></pre>
           <section id="_index">
             <h1>_index</h1>
@@ -837,7 +837,7 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection._index</span>
             </p>
           </section>
-          <div class="description"><p><code>object</code> Stores an indexed array of objects id:object and cid:object</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p><code>object</code> Stores an indexed array of objects id:object and cid:object.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">_index:{},</code></pre>
           <section id="length">
             <h1>length</h1>
@@ -846,7 +846,7 @@ Andalay.Model.prototype[method] = function() {
               <div class="label label-success radius ctx-type">property</div><span>Andalay.Collection.length</span>
             </p>
           </section>
-          <div class="description"><p><code>int</code> Mirrors the length of the models array</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p><code>int</code> Mirrors the length of the models array.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">length: 0,</code></pre>
           <section id="initialize">
             <h1>initialize</h1>
@@ -912,7 +912,7 @@ Andalay.Model.prototype[method] = function() {
               <tr>
                 <td>options</td>
                 <td>object</td>
-                <td><p>Options object. <code>options.at</code> (int) specify the position to add the model in the collection</p></td>
+                <td><p>Options object. <code>options.at</code> (int) specifies the position to add the model in the collection</p></td>
               </tr>
               <tr>
                 <td>return</td>
@@ -1515,7 +1515,7 @@ Andalay.Model.prototype[method] = function() {
               </tr>
             </tbody>
           </table>
-          <div class="description"><p>Fetch the default set of models for this collection from the server,<br />resetting the collection when they arrive. If <code>reset: true</code> is passed,<br />the response data will be passed through the reset method instead of set.</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
+          <div class="description"><p>Fetch the default set of models for this collection from the server,<br />resetting the collection when they arrive. If <code>reset: true</code> is passed,<br />the response data will be passed through the reset() method instead of set().</p> </div><a href class="codeToggle btn btn-default btn-xs">Show source</a>
           <pre class="hidden"><code class="language-javascript">fetch: function (options) {
 	options = options ? _.clone(options) : {};
 	if (options.parse === void 0) {
