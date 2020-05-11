@@ -1,3 +1,6 @@
+# Deprecated #
+We don't use Angular 1 for anything anymore. Vue is our main library of choice these days.  therefore this library is no longer maintained.
+
 # Andalay #
 
 A data layer modelled on Backbone collection and models. For use with Angular JS.
