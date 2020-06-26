@@ -1,5 +1,5 @@
 # Deprecated #
-We don't use Angular 1 for anything anymore. Vue is our main library of choice these days.  therefore this library is no longer maintained.
+We don't use Angular 1 for anything anymore. Vue is our main library of choice these days. This library is no longer maintained.
 
 # Andalay #
 
